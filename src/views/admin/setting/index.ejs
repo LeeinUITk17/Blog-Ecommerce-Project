@@ -1,0 +1,35 @@
+<section class="content">
+    <%- locals.flash %>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Contact Information</h3>
+        </div>
+        <div class="card-body p-0">
+            <% const attributes = ['address', 'email', 'phone', 'facebook', 'twitter', 'youtube','about','avatar']; %>
+
+            <% if (data && Array.isArray(data) && data.length > 0) { %>
+                <table class="table table-striped">
+                    <tbody>
+                        <% attributes.forEach(attribute => { %>
+                            <tr>
+                                <td><%= attribute.replace(/([A-Z])/g, ' $1').trim() %></td>
+                                <% data.forEach(item => { %>
+                                    <% if (attribute === 'avatar') { %>
+                                        <td><img src="/<%= item[attribute] %>" alt="Avatar"></td>
+                                    <% } else { %>
+                                        <td><%= item[attribute] %></td>
+                                    <% } %>
+                                <% }); %>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+                <div class="card-footer">
+                    <a href="/admin/setting/form/<%= data[0]._id %>" class="btn btn-info btn-sm float-right">Edit</a>
+                </div>
+            <% } else { %>
+                <p>No data available</p>
+            <% } %>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,137 @@
+
+
+<div class="untree_co-section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-12">
+        <div class="border p-4 rounded" role="alert">
+          Returning customer? <a href="#">Click here</a> to login
+        </div>
+      </div>
+    </div>
+    <div class="row">
+    <form action="/shop/thanks/add" method="post">
+      <div class="col-md-6 mb-5 mb-md-0">
+        <h2 class="h3 mb-3 text-black">Billing Details</h2>
+        <div class="p-3 p-lg-5 border bg-white">
+          <div class="form-group">
+            <label for="c_country" class="text-black">Province <span class="text-danger">*</span></label>
+            <select id="c_country" class="form-control">
+              <% listaddress.forEach((item) => { %>
+                <option><%= item.name%></option>  
+                  <% }); %>
+            </select>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-6">
+              <label for="receiver[name]" class="text-black">Name <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="receiver[name]" name="receiver[name]">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <div class="col-md-12">
+              <label for="receiver[address]" class="text-black">Address <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="receiver[address]" name="receiver[address]" placeholder="Street address">
+            </div>
+          </div>
+
+          <div class="form-group row mb-5">
+            <div class="col-md-6">
+              <label for="receiver[mail]" class="text-black">Email Address <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="receiver[mail]" name="receiver[mail]">
+            </div>
+            <div class="col-md-6">
+              <label for="receiver[phone]" class="text-black">Phone <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="receiver[phone]" name="receiver[phone]" placeholder="Phone Number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="receiver[note]" class="text-black">Order Notes</label>
+            <textarea name="receiver[note]" id="receiver[note]" cols="30" rows="5" class="form-control" placeholder="Write your notes here..."></textarea>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-md-6">
+
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Coupon Code</h2>
+            <div class="p-3 p-lg-5 border bg-white">
+
+              <label for="coupon" class="text-black mb-3">Enter your coupon code if you have one</label>
+              <div class="input-group w-75 couponcode-wrap">
+                <input type="text" class="form-control me-2" name="coupon" id="coupon" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                  <button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Your Order</h2>
+            <div class="p-3 p-lg-5 border bg-white">
+              <table class="table site-block-order-table mb-5">
+                <thead>
+                  <th>Product</th>
+                  <th>Total</th>
+                </thead>
+                <tbody>
+                  <%
+                  const itemQuantities = {};
+                  let subtotal = 0; 
+                  
+                  data.forEach((item) => {
+                      const itemId = item._id.toString();
+                      itemQuantities[itemId] ? itemQuantities[itemId]++ : itemQuantities[itemId] = 1;
+                  });
+                  
+                  const renderedIds = new Set();
+                  
+                  data.forEach((item,index) => {
+                      const itemId = item._id.toString();
+                      if (!renderedIds.has(itemId)) {
+                          renderedIds.add(itemId);
+                          subtotal += item.price * (itemQuantities[itemId] || 0); 
+                  %>
+                  <tr>
+                    <td><%= item.name %><strong class="mx-2">x</strong><%= itemQuantities[itemId] || 0 %></td>
+                    <td><%= item.price%></td>
+                  </tr>
+                  <input type="hidden" name="list[<%= index %>][id]" value="<%= item._id %>">
+  <input type="hidden" name="list[<%= index %>][quantity]" value="<%= itemQuantities[item._id.toString()] || 0 %>">
+  <input type="hidden" name="list[<%= index %>][price]" value="<%= item.price %>">
+                  <% }
+                  });
+                  %>
+                
+                  <tr>
+                    <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                    <td class="text-black">$<%= subtotal.toFixed(2) %></td>
+                  </tr>
+                  <tr>
+                    <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                    <td class="text-black font-weight-bold"><strong>$<%= subtotal.toFixed(2) %></strong></td>
+                  </tr>
+                </tbody>
+              </table>
+              <input type="hidden" name="total" value="<%= subtotal.toFixed(2) %>">              
+              <div class="form-group">
+                <button type="submit" class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='/shop/thanks'">Place Order</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+    </div>
+    <!-- </form> -->
+  </div>
+</div>

@@ -1,0 +1,193 @@
+
+    <!-- Content Header (Page header) -->
+
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+
+                <p>New Orders</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Bounce Rate</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>44</h3>
+
+                <p>User Registrations</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>65</h3>
+
+                <p>Unique Visitors</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+      <h3 class="card-title">News Inbox</h3>
+      <div class="card-tools">
+      <div class="input-group input-group-sm">
+      <input type="text" class="form-control" placeholder="Search Mail">
+      <div class="input-group-append">
+      <div class="btn btn-primary">
+      <i class="fas fa-search"></i>
+      </div>
+      </div>
+      </div>
+      </div>
+      
+      </div>
+      
+      <div class="card-body p-0">
+      <div class="table-responsive mailbox-messages">
+      <table class="table table-hover table-striped">
+      <tbody>
+        <%
+          let nonitemCount = 0;
+          listcontact.forEach((item) => {
+            if (item.status === 'active' && item.place === 'news' && nonitemCount < 5) {
+              nonitemCount++;
+        %>
+              <tr>
+                <td class="project-state" id="status-<%= item.id %>">
+                  <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>',''); return false;">
+                    <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
+                  </a>
+                </td>
+                <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                <td class="mailbox-name"><a href="/admin/contact/form/<%= item._id%>"><%= item.Name%></a></td>
+                <td class="mailbox-subject"><b><%= item.Email%></b> - Trying to find a solution to this problem...</td>
+                <td class="mailbox-attachment"></td>
+                <td>
+                  <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/delete/<%= item.id %>')">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                  </a>
+                </td>
+              </tr>
+        <%
+            }
+          });
+        %>
+        
+       
+      </tbody>
+      </table>
+      
+      </div>
+      
+      </div>
+      
+      <div class="card-footer p-0">
+      </div>
+      </div>
+      <div class="card card-primary card-outline">
+        <div class="card-header">
+        <h3 class="card-title">Store InBox</h3>
+        <div class="card-tools">
+        <div class="input-group input-group-sm">
+        <input type="text" class="form-control" placeholder="Search Mail">
+        <div class="input-group-append">
+        <div class="btn btn-primary">
+        <i class="fas fa-search"></i>
+        </div>
+        </div>
+        </div>
+        </div>
+        
+        </div>
+        
+        <div class="card-body p-0">
+        <div class="table-responsive mailbox-messages">
+        <table class="table table-hover table-striped">
+        <tbody>
+          <%
+          let itemCount = 0;
+          listcontact.forEach((item) => {
+            if (item.status === 'active' && item.place === 'shop' && itemCount < 5) {
+              itemCount++;
+        %>
+              <tr>
+                <td class="project-state" id="status-<%= item.id %>">
+                  <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>',''); return false;">
+                    <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
+                  </a>
+                </td>
+                <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+                <td class="mailbox-name"><a href="/admin/contact/form/<%= item._id%>"><%= item.Name%></a></td>
+                <td class="mailbox-subject"><b><%= item.Email%></b> - Trying to find a solution to this problem...</td>
+                <td class="mailbox-attachment"></td>
+                <td>
+                  <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/delete/<%= item.id %>')">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                  </a>
+                </td>
+              </tr>
+        <%
+            }
+          });
+        %>
+        
+       
+        </tbody>
+        </table>
+        
+        </div>
+        
+        </div>
+        
+        <div class="card-footer p-0">
+        </div>
+        </div>
+
+        

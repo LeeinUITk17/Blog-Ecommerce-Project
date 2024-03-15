@@ -1,0 +1,114 @@
+<div class="card card-primary card-outline">
+  <div class="card-header">
+  <h3 class="card-title">News Inbox</h3>
+  <div class="card-tools">
+  <div class="input-group input-group-sm">
+  <input type="text" class="form-control" placeholder="Search Mail">
+  <div class="input-group-append">
+  <div class="btn btn-primary">
+  <i class="fas fa-search"></i>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  </div>
+  
+  <div class="card-body p-0">
+  <div class="table-responsive mailbox-messages">
+  <table class="table table-hover table-striped">
+  <tbody>
+    <%
+      data.forEach((item) => {
+        if (item.place === 'news') {
+    %>
+          <tr>
+            <td class="project-state" id="status-<%= item.id %>">
+              <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>',''); return false;">
+                <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
+              </a>
+            </td>
+            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+            <td class="mailbox-name"><a href="/admin/contact/form/<%= item._id%>"><%= item.Name%></a></td>
+            <td class="mailbox-subject"><b><%= item.Email%></b> - Trying to find a solution to this problem...</td>
+            <td class="mailbox-attachment"></td>
+            <td>
+              <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/delete/<%= item.id %>')">
+                <i class="fas fa-trash"></i>
+                Delete
+              </a>
+            </td>
+          </tr>
+    <%
+        }
+      });
+    %>
+    
+   
+  </tbody>
+  </table>
+  
+  </div>
+  
+  </div>
+  
+  <div class="card-footer p-0">
+  </div>
+  </div>
+  <div class="card card-primary card-outline">
+    <div class="card-header">
+    <h3 class="card-title">Store InBox</h3>
+    <div class="card-tools">
+    <div class="input-group input-group-sm">
+    <input type="text" class="form-control" placeholder="Search Mail">
+    <div class="input-group-append">
+    <div class="btn btn-primary">
+    <i class="fas fa-search"></i>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    <div class="card-body p-0">
+    <div class="table-responsive mailbox-messages">
+    <table class="table table-hover table-striped">
+    <tbody>
+      <%
+      data.forEach((item) => {
+        if (item.place === 'shop') {
+    %>
+          <tr>
+            <td class="project-state" id="status-<%= item.id %>">
+              <a href="/changeStatus/<%= item.id %>/<%= item.status %>" onclick="handleUpdateStatus('<%= item.id %>', '<%= item.status %>',''); return false;">
+                <span class="badge <%= item.status === 'active' ? 'badge-success' : 'badge-danger' %>"><%= item.status %></span>
+              </a>
+            </td>
+            <td class="mailbox-star"><a href="#"><i class="fas fa-star text-warning"></i></a></td>
+            <td class="mailbox-name"><a href="/admin/contact/form/<%= item._id%>"><%= item.Name%></a></td>
+            <td class="mailbox-subject"><b><%= item.Email%></b> - Trying to find a solution to this problem...</td>
+            <td class="mailbox-attachment"></td>
+            <td>
+              <a class="btn btn-danger btn-delete btn-sm" href="javascript:handleDelete('/admin/delete/<%= item.id %>')">
+                <i class="fas fa-trash"></i>
+                Delete
+              </a>
+            </td>
+          </tr>
+    <%
+        }
+      });
+    %>
+    
+   
+    </tbody>
+    </table>
+    
+    </div>
+    
+    </div>
+    
+    <div class="card-footer p-0">
+    </div>
+    </div>

@@ -1,0 +1,13 @@
+<section>
+  <ul>
+    <% items.forEach(item => { %>
+      <li>
+        <h2>
+          <a href="<%= item.link %>" target="_blank" rel="noopener">
+            <%= item.title %>
+          </a>
+        </h2>
+      </li>
+    <% }); %>
+  </ul>
+</section>

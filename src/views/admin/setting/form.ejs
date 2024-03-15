@@ -1,0 +1,106 @@
+<%- locals.flash %>
+<section class="content">
+    <% let item = data || {} %>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="POST" action="/admin/setting/form/<%= item._id %>">
+                <div class="card card-warning">
+                    <div class="card-header">
+                        <h3 class="card-title">Contact</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputContactAddress">Address</label>
+                            <input type="text" id="inputContactAddress" name="address" class="form-control" placeholder="Enter your address..." value="<%= item.address %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputContactEmail">Email</label>
+                            <input type="text" id="inputContactEmail" name="email" class="form-control" placeholder="Enter your email..." value="<%= item.email %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputContactPhone">Phone Number</label>
+                            <input type="text" id="inputContactPhone" name="phone" class="form-control" placeholder="Enter your phone number..." value="<%= item.phone %>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">Social</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputSocialFacebook">Facebook</label>
+                            <input type="text" id="inputSocialFacebook" name="facebook" class="form-control" placeholder="Enter your Facebook..." value="<%= item.facebook %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSocialTwitter">Twitter</label>
+                            <input type="text" id="inputSocialTwitter" name="twitter" class="form-control" placeholder="Enter your Twitter..." value="<%= item.twitter %>">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSocialYoutube">Youtube</label>
+                            <input type="text" id="inputSocialYoutube" name="youtube" class="form-control" placeholder="Enter your Youtube..." value="<%= item.youtube %>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card card-secondary">
+                    <div class="card-header">
+                        <h3 class="card-title">About</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label for="inputSocialabout">About Us</label>
+                            <input type="text" id="inputSocialabout" name="about" class="form-control" placeholder="Enter your about..." value="<%= item.about %>">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary float-right">Submit Information</button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <% if (item._id) { %>
+                <form method="POST" action="/admin/setting/upload/<%= item._id %>" enctype="multipart/form-data">
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h3 class="card-title">Image Upload</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="avatar">Logo</label>
+                                <input type="file" class="form-control" name="avatar" onchange="previewImage(this)">
+                                <img id="avatarPreview" src="/<%= item.avatar %>" alt="Avatar Preview" style="max-width: 500px; margin-top: 10px;">
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Upload Image</button>
+                        </div>
+                    </div>
+                </form>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <a href="/admin/setting" class="btn btn-secondary">Cancel</a>
+        </div>
+    </div>
+</section>

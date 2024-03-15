@@ -1,0 +1,64 @@
+<%- locals.flash %>
+<section class="content">
+  <%
+  let item = {}
+  if (data) {
+       item = data
+  }
+%>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Form 1: General Information -->
+      <form method="POST" action="/admin/coupon/form" autocapitalize="true" >
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">General</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select name='status' id="status" class="form-control custom-select">
+                <option selected disabled="">Select one</option>
+                <option value="active" <%= (item.status == "active") ? 'selected="selected"' : '' %> >Active</option>
+                <option value="inactive" value="inactive" <%= (item.status == "inactive") ? 'selected="selected"' : '' %>>Inactive</option>
+              </select>
+            </div>
+            <div class="form-group">
+                <label for="discount">Discount</label>
+                <select name='discount' id="discount" class="form-control custom-select">
+                  <option selected disabled="">Select one</option>
+                  <option value="percent" <%= (item.discount == "percent") ? 'selected="selected"' : '' %> >percent</option>
+                  <option value="money" value="money" <%= (item.discount == "money") ? 'selected="selected"' : '' %>>money</option>
+                </select>
+              </div>
+            <div class="form-group">
+              <label for="ordering">Ordering</label>
+              <input name="ordering" type="number" id="ordering" class="form-control" value="<%= item.ordering  %>">
+            </div>    
+              <div class="form-group">
+                <label for="value">Value</label>
+                <input name="value" type="number" id="value" class="form-control" value="<%= item.value %>">
+              </div>
+              <div>
+                <div class="form-group">
+                  <label for="expirate">Expirate Date</label>
+                  <input type="date" name="expirate" id="expirate" class="form-control"  placeholder="dd-mm-yyyy"  max="2030-12-31" %>">
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="minimum">Minimum Order Value</label>
+                <input name="minimum" type="number" id="minimum" class="form-control" value="<%= item.minimum %>">
+              </div>
+            <button type="submit" class="btn btn-primary float-right">Submit General Info</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

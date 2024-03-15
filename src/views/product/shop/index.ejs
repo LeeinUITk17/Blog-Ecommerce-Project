@@ -1,0 +1,25 @@
+
+
+
+
+<div class="untree_co-section product-section before-footer-section">
+    <div class="container">
+          <div class="row">
+
+            <% listproduct.forEach((item) => { %>
+                <div class="col-12 col-md-4 col-lg-3 mb-5">
+                          <a class="product-item" href="/shop/viewproduct/<%= item._id%>">
+                              <img src="/<%= item.avatar%>" class="img-fluid product-thumbnail">
+                              <h3 class="product-title"><%= item.name%></h3>
+                              <strong class="product-price">$<%= item.price%></strong>
+          
+                              <span class="icon-cross">
+                                  <img src="/product/images/cross.svg" class="img-fluid">
+                              </span>
+                          </a>
+                      </div> 
+            <% }); %>
+
+          </div>
+    </div>
+</div>

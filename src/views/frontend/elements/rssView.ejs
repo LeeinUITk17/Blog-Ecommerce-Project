@@ -1,0 +1,46 @@
+<% viewrss = ({ type, linkrss }) => {
+    let xHtml = '';
+    linkrss.forEach((item, index) => {
+        let title = 'Not Found';
+        let link = '#';
+        let description = 'Not Found';
+        let src = '#';
+        switch (type) {
+            case 'thanhnien':
+                title = item.title;
+                link = item.link;
+                description = item.description;
+                break;
+            case 'vnexpress':
+                title = item.title;
+                link = item.link;
+                description = item.description;
+                break;
+            default:
+                break;
+        }
+        const regex = /<img[^>]*src=["']([^"']+)/;
+        const match = description.match(regex);
+        src = match ? match[1] : null;
+        xHtml += `<div class="col-md-3">
+                      <div class="row gutter--15">
+                          <div class="col-md-12 col-xs-6 col-xxs-12">
+                              <!-- Post Item Start -->
+                              <div class="post--item post--layout-1 post--title-large">
+                                  <div class="post--img">
+                                      <a href="${link}" class="thumb"><img src="${src}" alt=""></a>
+                                      <div class="post--info">
+                                          <div class="title">
+                                              <h2 class="h4"><a href="${link}" class="btn-link">${title}</a></h2>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <!-- Post Item End -->
+                          </div>
+                      </div>
+                  </div>`;
+    });
+
+    return xHtml;
+}%>

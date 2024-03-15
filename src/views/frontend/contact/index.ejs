@@ -1,0 +1,66 @@
+<section id="content-wrap" class="site-page">
+    <div class="row">
+        <div class="col-twelve">
+
+            <section>  
+
+                <div class="content-media">
+                     <div id="map-wrap">
+                        <div id="map-container"></div>
+                       <div id="map-zoom-in"></div>
+                         <div id="map-zoom-out"></div>
+                    </div>  
+                 </div>
+
+                 <div class="primary-content">
+
+                     <h1 class="entry-title add-bottom">Get In Touch With Us.</h1>	
+
+                     <p class="lead"><%= datasetting[0].about%></p> 
+
+                     <div class="row">
+                         <div class="col-six tab-full">
+                             <h4>Where to Find Us</h4>
+
+                               <p>
+                                <%= datasetting[0].address %>
+                          </p>
+
+                         </div>
+
+                         <div class="col-six tab-full">
+                             <h4>Contact Info</h4>
+
+                            <p>
+                                <%= datasetting[0].email %><br>
+                                <%= datasetting[0].phone %>		     
+                            </p>
+
+                         </div>
+
+                     </div>
+
+                     <form method="post" action="/contact/mail">
+                        <fieldset>
+                            <div class="form-field">
+                                <label for="Name">Your Name:</label>
+                                <input name="Name" type="text" id="Name" class="full-width" placeholder="Your Name" required>
+                            </div>
+                    
+                            <div class="form-field">
+                                <label for="Email">Your Email:</label>
+                                <input name="Email" type="email" id="Email" class="full-width" placeholder="Your Email" required>
+                            </div>
+                    
+                            <div class="message form-field">
+                                <label for="Message">Your Message:</label>
+                                <textarea name="Message" id="Message" class="full-width" placeholder="Your Message" required></textarea>
+                            </div>
+                    
+                            <button type="submit" class="submit button-primary full-width-on-mobile">Submit</button>
+                        </fieldset>
+                    </form>
+                     <!-- end form -->
+
+             </section>
+        

@@ -1,0 +1,82 @@
+<%- locals.flash %>
+<section class="content">
+  <%
+  let item = {}
+  if (data) {
+       item = data
+  }
+%>
+  <div class="row">
+    <div class="col-md-6">
+      <!-- Form 1: General Information -->
+      <form method="POST" action="/admin/category/form" >
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">General</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                <i class="fas fa-minus"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input name="name" type="text" id="name" class="form-control" value="<%= item.name  %>">
+              <input style="display: none" name="id" type="text" id="id" class="form-control" value="<%= item._id  %>">
+            </div>
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select name='status' id="status" class="form-control custom-select">
+                <option selected disabled="">Select one</option>
+                <option value="active" <%= (item.status == "active") ? 'selected="selected"' : '' %> >Active</option>
+                <option value="inactive" <%= (item.status == "inactive") ? 'selected="selected"' : '' %>>Inactive</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input name="description" placeholder="Description...." type="text" id="description" class="form-control" value="<%= item.description  %>">
+            </div>
+            <div class="form-group">
+              <label for="ordering">Ordering</label>
+              <input name="ordering" type="number" id="ordering" class="form-control" value="<%= item.ordering  %>">
+            </div>
+            <div class="form-group">
+              <label for="special">Special</label>
+              <select name="special" id="special" class="form-control custom-select">
+                  <option value="true" <%= (item.special === true) ? 'selected="selected"' : '' %>>True</option>
+                  <option value="false" <%= (item.special === false) ? 'selected="selected"' : '' %>>False</option>
+              </select>
+          </div>
+            <button type="submit" class="btn btn-primary float-right">Submit General Info</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <!-- Form 2: Image Upload (Show only if id exists) -->
+      <% if (item._id) { %>
+        <form method="POST" action="/admin/category/upload/<%= item._id %>" enctype="multipart/form-data">
+          <input style="display: none" name="id" type="text" id="id" class="form-control" value="<%= item._id  %>">
+          <div class="card card-warning">
+            <div class="card-header">
+              <h3 class="card-title">Image upload</h3>
+            </div>
+            <div class="card-body">
+              <!-- Remove the unnecessary inner form tag -->
+              <div class="form-group">
+                <label for="avatar">Avatar</label>
+                <input type="file" class="form-control" name="avatar" onchange="previewImage(this)">
+                <img id="avatarPreview" src="/<%= item.avatar %>" alt="Avatar Preview" style="max-width: 500px; margin-top: 10px;">
+              </div>
+            </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Upload Image</button>
+            </div>
+          </div>
+        </form>
+        
+      <% } %>
+    </div>
+  </div>
+</section>

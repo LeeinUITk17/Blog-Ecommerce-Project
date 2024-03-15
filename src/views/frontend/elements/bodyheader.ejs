@@ -1,0 +1,61 @@
+<header class="short-header">   
+
+    <div class="gradient-block"></div>	
+
+    <div class="row header-content">
+
+        <div class="logo">
+          <a href="/<%= listcategory[0].slug %>">Home
+            <img src="/<%=datasetting[0].avatar %>" alt="Logo">
+        </a>
+       </div>
+
+        <nav id="main-nav-wrap">
+            <ul class="main-navigation sf-menu">
+                
+                <% let specialFalseItems = listcategory.filter(item => !item.special); %>
+
+                <% listcategory.forEach((item) => { %>
+                    <% if(item.special) { %>
+                        <li><a href="/<%= item.slug %>"><%= item.name %></a></li>
+                    <% } %>
+                <% }); %>
+                <% if (specialFalseItems.length > 0) { %>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Category</a>
+                        <ul class="dropdown-menu">
+                            <% specialFalseItems.forEach(item => { %>
+                                <li>
+                                    <a href="/category/<%= item.slug %>" class="dropdown-item"><%= item.name %></a>
+                                </li>
+                            <% }); %>
+                        </ul>
+                    </li>
+                <% } %>
+                
+
+               
+            </ul>
+         </nav> <!-- end main-nav-wrap -->
+
+         <div class="search-wrap">
+            <form role="search" method="get" class="search-form" action="/search">
+                <label>
+                    <span class="hide-content">Search for:</span>
+                    <input type="search" class="search-field" placeholder="Type Your Keywords" name="keywords" title="Search for:" autocomplete="off">
+                </label>
+                <input type="submit" class="search-submit" value="Search">
+            </form>
+            <a href="#" id="close-search" class="close-btn">Close</a>
+        </div>
+                
+         <!-- end search wrap -->	
+
+         <div class="triggers">
+             <a class="search-trigger" href="#"><i class="fa fa-search"></i></a>
+             <a class="menu-toggle" href="#"><span>Menu</span></a>
+         </div> <!-- end triggers -->	
+        
+    </div>     		
+    
+</header> <!-- end header -->

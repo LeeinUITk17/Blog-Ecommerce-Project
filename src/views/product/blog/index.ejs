@@ -1,0 +1,142 @@
+
+
+
+
+<!-- Start Blog Section -->
+<div class="blog-section">
+    <div class="container">
+        
+        <div class="row">
+
+            <%
+            function shuffleArray(array) {
+              for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+              }
+              return array;
+            }
+            const shuffledNews = shuffleArray(listnews);
+            shuffledNews.slice(0, 9).forEach((item) => {
+          %>
+              <div class="col-12 col-sm-6 col-md-4 mb-5">
+                  <div class="post-entry">
+                      <a href="/news/<%= item._id%>" class="post-thumbnail"><img src="/<%= item.avatar%>" alt="Image" class="img-fluid" width="80%" height="auto"></a>
+                      <div class="post-content-entry">
+                          <h3><a href="/news/<%= item._id%>"><%= item.name%></a></h3>
+                          <div class="meta">
+                              <span>by <a href="/news/<%= item._id%>"><%= item.description%></a></span>
+                              <span>on <a href="/news/<%= item._id%>"><%= item.createdAt.toISOString().split('T')[0] %></a></span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          <%
+            });
+          %>
+          
+        </div>
+    </div>
+</div>
+<!-- End Blog Section -->	
+
+
+
+<!-- Start Testimonial Slider -->
+<div class="testimonial-section before-footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 mx-auto text-center">
+                <h2 class="section-title">Testimonials</h2>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="testimonial-slider-wrap text-center">
+
+                    <div id="testimonial-nav">
+                        <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
+                        <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+                    </div>
+
+                    <div class="testimonial-slider">
+                        
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
+
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;One piece Big Fan, that's all.. (/^_^)/.&rdquo;</p>
+                                        </blockquote>
+
+                                        <div class="author-info">
+                                            <div class="author-pic">
+                                                <img src="/product/images/me.jpg" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">L.Thanh Tai</h3>
+                                            <span class="position d-block mb-3">UITer.</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- END item -->
+
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
+
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;One piece Big Fan, that's all.. (/^_^)/.&rdquo;</p>
+                                        </blockquote>
+
+                                        <div class="author-info">
+                                            <div class="author-pic">
+                                                <img src="/product/images/me2.jpg" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">L.Thanh Tai</h3>
+                                            <span class="position d-block mb-3">UITer.</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- END item -->
+
+                        <div class="item">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-8 mx-auto">
+
+                                    <div class="testimonial-block text-center">
+                                        <blockquote class="mb-5">
+                                            <p>&ldquo;One piece Big Fan, that's all.. (/^_^)/.&rdquo;</p>
+                                        </blockquote>
+
+                                        <div class="author-info">
+                                            <div class="author-pic">
+                                                <img src="/product/images/me3.jpg" alt="Maria Jones" class="img-fluid">
+                                            </div>
+                                            <h3 class="font-weight-bold">L.Thanh Tai</h3>
+                                            <span class="position d-block mb-3">UITer.</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- END item -->
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Testimonial Slider -->
+

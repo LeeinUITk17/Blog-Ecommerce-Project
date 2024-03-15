@@ -1,0 +1,68 @@
+<section id="bricks">
+    <button type="button" class="btn btn-block btn-outline-dark">Keyword: <%= keyword %></button>
+    <% if (data && Array.isArray(data)) { %>
+        <button type="button" class="btn btn-block btn-outline-dark">Quantity searched: <%= data.length %></button>
+    <% } %>
+    <div class="row masonry">
+
+        <!-- brick-wrapper -->
+        <!-- bricks-wrapper -->
+        <div class="bricks-wrapper">
+
+            <div class="grid-sizer"></div>
+
+            <% if (data && Array.isArray(data)) { %>
+                <% data.forEach((item, index) => { %>
+                    <article class="brick entry format-standard animate-this">
+
+                        <div class="entry-thumb">
+                            <a href="/news/<%= item._id %>" class="thumb-link">
+                                <img src="/<%= item.avatar %>" alt="building">
+                            </a>
+                        </div>
+
+                        <div class="entry-text">
+                            <div class="entry-header">
+
+                                <div class="entry-meta">
+                                    <span class="cat-links">
+                                        <a href="#"><%- item.name %></a>
+                                    </span>
+                                </div>
+
+                                <h1 class="entry-title">
+                                    <a href="/news/<%= item._id %>"><%- item.description %></a>
+                                </h1>
+
+                            </div>
+                        </div>
+
+                    </article> <!-- end article -->
+                <% }); %>
+            <% } %>
+
+            <!-- format audio here -->
+
+        </div> <!-- end bricks-wrapper -->
+
+    </div> <!-- end row -->
+
+    <div class="row">
+
+        <nav class="pagination">
+            <span class="page-numbers prev inactive">Prev</span>
+            <span class="page-numbers current">1</span>
+            <a href="#" class="page-numbers">2</a>
+            <a href="#" class="page-numbers">3</a>
+            <a href="#" class="page-numbers">4</a>
+            <a href="#" class="page-numbers">5</a>
+            <a href="#" class="page-numbers">6</a>
+            <a href="#" class="page-numbers">7</a>
+            <a href="#" class="page-numbers">8</a>
+            <a href="#" class="page-numbers">9</a>
+            <a href="#" class="page-numbers next">Next</a>
+        </nav>
+
+    </div>
+
+</section> <!-- end bricks -->

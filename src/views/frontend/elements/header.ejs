@@ -1,0 +1,34 @@
+<head>
+
+    <!--- basic page needs
+    ================================================== -->
+    <meta charset="utf-8">
+     <title>One piece fandom</title>
+     <meta name="description" content="">  
+     <meta name="author" content="">
+ 
+    <!-- mobile specific metas
+    ================================================== -->
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+ 
+      <!-- CSS
+    ================================================== -->
+    <link rel="stylesheet" href="/frontend/css/base.css">
+    <link rel="stylesheet" href="/frontend/css/vendor.css">  
+    <link rel="stylesheet" href="/frontend/css/main.css">
+         
+ 
+    <!-- script
+    ================================================== -->
+     <script src="/frontend/js/modernizr.js"></script>
+     <script src="/frontend/js/pace.min.js"></script>
+ 
+    <!-- favicons
+     ================================================== -->
+    
+     <% datasetting.forEach((item) => { %>
+      <link rel="shortcut icon" href="/<%= item.avatar %>" type="image/x-icon">
+      <link rel="icon" href="/<%= item.avatar %>" type="image/x-icon">
+  <% }); %>
+  
+ </head>
