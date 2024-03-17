@@ -20,5 +20,34 @@ const mailreply = () => {
 
     return message;
 };
+const invoice = (user, purchasedItems, totalAmount, shippingAddress) => {
+    const message = `
+    <html>
+    <head>
+        <style>
+            /* Add any custom styles here */
+        </style>
+    </head>
+    <body>
+        <h2>Thank You for Your Purchase!</h2>
+        <p>Dear ${user},</p>
+        <p>Your order has been successfully placed:</p>
+        <ul>
+            ${purchasedItems.map(item => `<li>${item.name} - ${item.quantity} x ${item.price}</li>`).join('')}
+        </ul>
+        <p>Total Amount: $${totalAmount}</p>
+        <p>Shipping Address:</p>
+        <p>${shippingAddress}</p>
+        <p>If you have any questions or concerns about your order, please contact us at mrtaivietbac@gmail.com.</p>
+        <p>Thank you for shopping with us!</p>
+    </body>
+    </html>
+    `;
+    return message;
+};
 
-module.exports = mailreply;
+
+module.exports = {
+    mailreply,
+    invoice,
+}

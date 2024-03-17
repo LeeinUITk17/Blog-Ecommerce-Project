@@ -15,7 +15,8 @@ const receiverSchema = new Schema({
 const productSchema = new Schema({
   id: String,
   quantity: Number,
-  price: Number
+  price: Number,
+  name:String,
 });
 
 const newSchema = new Schema(

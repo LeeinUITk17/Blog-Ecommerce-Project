@@ -105,6 +105,7 @@
                     <td><%= item.price%></td>
                   </tr>
                   <input type="hidden" name="list[<%= index %>][id]" value="<%= item._id %>">
+                  <input type="hidden" name="list[<%= index %>][name]" value="<%= item.name %>">
   <input type="hidden" name="list[<%= index %>][quantity]" value="<%= itemQuantities[item._id.toString()] || 0 %>">
   <input type="hidden" name="list[<%= index %>][price]" value="<%= item.price %>">
                   <% }
