@@ -46,6 +46,10 @@ const newSchema = new Schema(
     coupon: {
       type: String,
       default:"none",
+    },
+    provinceid:{
+      type:String,
+       default:"none",
     }
   },
   {

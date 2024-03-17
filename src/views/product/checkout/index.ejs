@@ -16,10 +16,11 @@
         <div class="p-3 p-lg-5 border bg-white">
           <div class="form-group">
             <label for="c_country" class="text-black">Province <span class="text-danger">*</span></label>
-            <select id="c_country" class="form-control">
+            <select id="listaddress" class="form-control">
               <% listaddress.forEach((item) => { %>
-                <option><%= item.name%></option>  
-                  <% }); %>
+                <option value="<%= item.charging %>" data-id="<%= item._id %>"><%= item.name %></option>
+              <% }); %>
+              <input type="hidden" id="address_id" name="provinceid">
             </select>
           </div>
           <div class="form-group row">
@@ -71,7 +72,7 @@
             </div>
           </div>
         </div>
-
+        <!-- <input type="hidden" class="form-control me-2" value="" name="coupon" id="coupon" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2"> -->
         <div class="row mb-5">
           <div class="col-md-12">
             <h2 class="h3 mb-3 text-black">Your Order</h2>
@@ -79,7 +80,7 @@
               <table class="table site-block-order-table mb-5">
                 <thead>
                   <th>Product</th>
-                  <th>Total</th>
+                  <th>Total ($)</th>
                 </thead>
                 <tbody>
                   <%
@@ -109,18 +110,21 @@
                   <% }
                   });
                   %>
-                
+                  <tr>
+      <td class="text-black font-weight-bold"><strong>Shipping Fee</strong></td>
+      <td class="text-black font-weight-bold" id="shipping_fee"><strong></strong></td>
+    </tr>
                   <tr>
                     <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
-                    <td class="text-black">$<%= subtotal.toFixed(2) %></td>
+                    <td class="text-black" id="subtotal"><%= parseInt(subtotal.toFixed(2)) %></td>
                   </tr>
                   <tr>
                     <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
-                    <td class="text-black font-weight-bold"><strong>$<%= subtotal.toFixed(2) %></strong></td>
+                    <td class="text-black font-weight-bold" id="total"></td>
                   </tr>
                 </tbody>
               </table>
-              <input type="hidden" name="total" value="<%= subtotal.toFixed(2) %>">              
+              <input type="hidden" id="hiddentotal" name="total">              
               <div class="form-group">
                 <button type="submit" class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='/shop/thanks'">Place Order</button>
               </div>

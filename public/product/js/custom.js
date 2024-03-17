@@ -102,3 +102,20 @@ const submitForm = () => {
     console.log('Submitting form');
     document.getElementById('checkoutForm').submit();
 };
+
+  const charging = () => {
+	var selectElement = document.getElementById('listaddress');
+var selectedOption = selectElement.options[selectElement.selectedIndex];
+document.getElementById('shipping_fee').innerText = selectedOption.value;
+var id = selectedOption.getAttribute('data-id');
+document.getElementById('address_id').value = id;
+var subtotal = parseFloat(document.getElementById('subtotal').innerText);
+var shipping_fee = parseFloat(selectedOption.value);
+var total = subtotal + shipping_fee;
+
+document.getElementById('total').innerText = total;
+document.getElementById('hiddentotal').value = total;
+  };
+  
+  charging();
+  document.getElementById('listaddress').addEventListener('change', charging);

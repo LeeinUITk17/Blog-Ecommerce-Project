@@ -10,6 +10,9 @@ const {
 const {
   getItemById:getProductById,
 }=require("../../services/product.admin.service");
+const {
+  getItemById:getAddressById,
+}=require("../../services/address.service");
 const mainName = 'bill';
 const linkprefix = `/admin/${mainName}/`;
 class billController {
@@ -34,12 +37,14 @@ class billController {
   getForm = async (req, res, next) => {
     let { id } = req.params;
       let data = await getBillById(id);
+      console.log(data);
       const products=[];
       for(let i=0;i<data.list.length;i++){
         products.push(await getProductById(data.list[i].id));
       }
+      let address=await getAddressById(data.provinceid);
       console.log(products);
-      res.render("admin/bill/form", { data ,products});
+      res.render("admin/bill/form", { data ,products,address});
   };
 
  

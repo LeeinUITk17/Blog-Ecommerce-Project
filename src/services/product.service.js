@@ -20,7 +20,7 @@ class productService {
     return await newsModel.find({}).sort({ordering:1});
   }
   async getAlladdress(){
-    return await addressModel.find({status:'active'}).sort({ordering:1}).select('name');
+    return await addressModel.find({status:'active'}).sort({ordering:1}).select('name charging _id');
   }
 
 }

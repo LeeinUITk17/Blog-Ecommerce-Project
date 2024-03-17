@@ -29,6 +29,7 @@
     <address>
     <strong>To: <%= data.receiver[0].name%></strong>
     <p><%= data.receiver[0].address%></p>
+    <p>Province: <%= address.name%></p>
     <p>Phone: <%= data.receiver[0].phone%></p>
    <p> Email: <%= data.receiver[0].mail%></p>
     </address>
@@ -52,6 +53,7 @@
     <tr>
     <th>Quantity</th>
     <th>Product</th>
+    <th>Image</th>
     <th>Description</th>
     <th>Subtotal</th>
     </tr>
@@ -62,6 +64,7 @@
                 <tr>
                     <td><%= data.list[i].quantity %></td>
                     <td><%= products[i].name %></td>
+                    <td><img src="/<%= products[i].avatar %>" alt="Avatar"  class="rounded-thumbnail" style="width: 50px;"></td>
                     <td><%= products[i].description %></td>
                     <td>$<%= data.list[i].price %></td>
                 </tr>
@@ -81,19 +84,26 @@
     <table class="table">
     <tbody><tr>
     <th style="width:50%">Subtotal:</th>
-    <td>$<%= data.total%></td>
+    <%
+let subtotal = 0;
+data.list.forEach((item) => {
+  subtotal += (item.price * item.quantity);
+});
+%>
+<td>$<%= subtotal %></td>
+
     </tr>
     <tr>
     <th>Tax</th>
-    <td>$10.34</td>
+    <td>$0</td>
     </tr>
     <tr>
     <th>Shipping:</th>
-    <td>$5.80</td>
+    <td>$<%= address.charging%></td>
     </tr>
     <tr>
     <th>Total:</th>
-    <td>$265.24</td>
+    <td>$<%= data.total%></td>
     </tr>
     </tbody></table>
     </div>
