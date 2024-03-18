@@ -8,29 +8,38 @@ class UserController {
             next(err);
         }
     };
+   getForm=async(req,res,next)=>{
+    try{
+        return res.render('product/login/form');
+    }
+    catch(err){
+        next(err);
+    }
+   };
+   register = async (req, res, next) => {
+    try {
+        console.table(req.body);
+        const user = await register(req.body);
+        req.session.user = user;
+        return await res.redirect('/shop');
+    } catch (err) {
+        req.flash('error', err.message);
+        return res.render('product/shop/login/form');
+    }
+};
 
-     register=async(req, res, next) =>{
-        try {
-            await register(req.body);
-            req.flash('success', 'Register successfully');
-            res.redirect('/');
-        } catch (err) {
-            req.flash('error', err.message);
-            res.redirect('/register');
-        }
-    };
+login = async (req, res, next) => {
+    try {
+        const user = await login(req.body);
+        req.session.user = user;
+        console.log(req.session.user);
+        return await res.redirect('/shop/home');
+    } catch (err) {
+        req.flash('error', err.message);
+        return res.render('product/shop/login');
+    }
+};
 
-     login=async(req, res, next)=> {
-        try {
-            const user = await login(req.body);
-            req.session.user = user;
-            req.flash('success', 'Login successfully');
-            res.redirect('/');
-        } catch (err) {
-            req.flash('error', err.message);
-            res.redirect('/login');
-        }
-    };
 }
 
 module.exports = new UserController();

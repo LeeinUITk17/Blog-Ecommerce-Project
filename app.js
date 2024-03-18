@@ -2,7 +2,7 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-
+const passport = require('passport');
 const bodyParser=require('body-parser');
 const flash = require("express-flash-notification");
 const session = require("express-session");
@@ -25,13 +25,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(bodyParser.json());
 
-app.use(
-  session({
-    secret: "your-secret-key",
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+app.use(session({
+  secret: "cnttvietnhatk17",
+  resave: true,
+  saveUninitialized: true,
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(
   flash(app, {
