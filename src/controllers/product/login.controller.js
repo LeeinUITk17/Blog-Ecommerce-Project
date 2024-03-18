@@ -32,7 +32,10 @@ login = async (req, res, next) => {
     try {
         const user = await login(req.body);
         req.session.user = user;
-        console.log(req.session.user);
+        req.login(user, function(err) {
+            if (err) { return next(err); }
+            console.log('User authenticated:', req.isAuthenticated());
+        });
         return await res.redirect('/shop/home');
     } catch (err) {
         req.flash('error', err.message);

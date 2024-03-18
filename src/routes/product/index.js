@@ -31,7 +31,10 @@ router.use(async(req,res,next)=>{
  })
 
 
-router.use('/',require('./home'));
+router.use('/',(req,res,next)=>{
+    console.log('User authenticated:', req.isAuthenticated());
+    next();
+},require('./home'));
 router.use('/home',require('./home'));
 router.use('/cart',require('./cart'));
 router.use('/checkout',require('./checkout'));

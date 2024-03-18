@@ -33,6 +33,11 @@ const newSchema = new Schema(
         type:Date,
         default:Date.now,
     },
+    status: {
+      type: String,
+      default: "inactive",
+      enum: ["active", "inactive"]
+    },
   },
   {
     timestamps: true,

@@ -37,4 +37,5 @@ router.use('/contact',require('./contact'));
 router.use('/address',require('./address'));
 router.use('/coupon',require('./coupon'));
 router.use('/bill',require('./bill'));
+router.use('/user',require('./user'));
 module.exports = router;
