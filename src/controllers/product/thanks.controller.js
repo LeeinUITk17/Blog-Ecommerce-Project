@@ -23,16 +23,14 @@ class thanksController {
       // console.log(req.body);
        await addItem(req.body);
        try {
-        const { receiver,list,total } = req.body;
-        console.table(receiver);
-        console.table(list);
-        ;
-        
+        const { receiver,list,total,code } = req.body;
+        // console.table(receiver);
+        // console.table(list);
         const mailOptions = {
             from: 'mrtaivietbac@gmail.com',
             to: receiver.mail,
             subject: `Thank you for your purchase, ${receiver.name}!`, 
-            html: `${invoice(receiver.name,list,total,receiver.address)}`, 
+            html: `${invoice(receiver.name,list,total,receiver.address,code)}`, 
         };
         await this.transporter.sendMail(mailOptions);
      } catch (error) {

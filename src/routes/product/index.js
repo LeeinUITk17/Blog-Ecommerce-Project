@@ -42,4 +42,5 @@ router.use('/about',require('./about'));
 router.use('/blog',require('./blog'));
 router.use('/thanks',require('./thanks'));
 router.use('/viewproduct',require('./viewproduct'));
+router.use('/login',require('./login'));
 module.exports=router;
