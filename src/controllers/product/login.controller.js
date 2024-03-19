@@ -1,5 +1,7 @@
-const { register, login } = require('../../services/login.service');
-
+const{
+    login,
+    register,
+}=require('../../services/login.service');
 class UserController {
      getAll=async(req, res, next)=> {
         try {
@@ -16,12 +18,12 @@ class UserController {
         next(err);
     }
    };
-   register = async (req, res, next) => {
+    register = async (req, res, next) => {
     try {
         console.table(req.body);
-        const user = await register(req.body);
-        req.session.user = user;
-        return await res.redirect('/shop');
+        await register(req.body);
+        await login(req,req.body);
+        return res.redirect('/shop');
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login/form');
@@ -30,12 +32,7 @@ class UserController {
 
 login = async (req, res, next) => {
     try {
-        const user = await login(req.body);
-        req.session.user = user;
-        req.login(user, function(err) {
-            if (err) { return next(err); }
-            console.log('User authenticated:', req.isAuthenticated());
-        });
+      await login(req,req.body);
         return await res.redirect('/shop/home');
     } catch (err) {
         req.flash('error', err.message);
