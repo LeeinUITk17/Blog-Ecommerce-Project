@@ -1,14 +1,7 @@
 const bcrypt = require('bcrypt');
 const usermodel = require('../model/user.model');
 const jwt = require('jsonwebtoken'); 
-const session = require('express-session'); 
-const express=require('express');
-const app=express();  
-app.use(session({
-  secret: 'cnttvietnhatk17', 
-  resave: false,
-  saveUninitialized: true,
-}));
+
 
 const register = async (body) => {
   try {

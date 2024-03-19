@@ -42,7 +42,6 @@ const {
   
     addOrUpdateItem = async (req, res) => {
       const { id } = req.body;
-     
       try {
         if (id) {
           await updateItem(id, req.body);

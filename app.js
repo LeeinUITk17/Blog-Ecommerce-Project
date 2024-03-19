@@ -2,10 +2,10 @@ var createError = require("http-errors");
 var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
-const passport = require('passport');
 const bodyParser=require('body-parser');
 const flash = require("express-flash-notification");
 const session = require("express-session");
+const passport=require('./src/helper/passport');
 var expressLayouts = require("express-ejs-layouts");
 const { connect } = require("./src/config/db");
 
@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 app.use(session({
   secret: "cnttvietnhatk17",
-  resave: true,
+  resave: false,
   saveUninitialized: true,
 }));
 
