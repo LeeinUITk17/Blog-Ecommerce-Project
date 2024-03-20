@@ -107,32 +107,31 @@ jQuery(document).ready(function($)  {
   });
 });
 
-// Dropzone.options.myDropzone = {
-//   autoProcessQueue: false,
-//   uploadMultiple: true,
-//   parallelUploads: 5,
-//   maxFiles: 5,
+Dropzone.options.myDropzone = {
+  url: "/admin/news/dropzone", 
+  paramName: "file", 
+  maxFilesize: 2, 
+  acceptedFiles: ".jpg,.jpeg,.png,.gif", 
+  addRemoveLinks: true, 
+  dictDefaultMessage: "Drop files here or click to upload", 
+  
+  init: function () {
+      var myDropzone = this;
+     
+      this.element.querySelector(".start").addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          myDropzone.processQueue(); 
+      });
+      
+      this.element.querySelector(".cancel").addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          myDropzone.removeAllFiles(); 
+      });
+  }
+};
 
-//   init() {
-//     const myDropzone = this;
-
-//     document.querySelector(".start").addEventListener("click", () => {
-//       myDropzone.processQueue();
-//     });
-
-//     document.querySelector(".cancel").addEventListener("click", () => {
-//       myDropzone.removeAllFiles(true);
-//     });
-//   }
-// };
-
-// const startUpload = () => {
-//   Dropzone.forElement("#myDropzone").processQueue();
-// };
-
-// const cancelUpload = () => {
-//   Dropzone.forElement("#myDropzone").removeAllFiles(true);
-// };
 
 const fetchDataWithSorting = async (status, keyword, sort) => {
   let query = {};

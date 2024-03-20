@@ -40,6 +40,10 @@ const newSchema = new Schema(
       type: Date,
       default: Date.now,
   },
+  listImage:{
+    type:Array,
+    default:[],
+  },
   },
   {
     timestamps: true,

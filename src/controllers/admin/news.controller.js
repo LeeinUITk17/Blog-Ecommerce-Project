@@ -9,11 +9,11 @@ const {
   getStatusCounts,
 } = require("../../services/news.services");
 const { imageHelper } = require("../../helper/news.helper");
+const {upload}=require('../../helper/dropzone.helper');
 const { body, validationResult } = require("express-validator");
 const mainName = 'news';
 const linkprefix = `/admin/${mainName}/`;
-var express = require("express");
-var router = express.Router();
+
 
 
 
@@ -217,6 +217,22 @@ statusTool = async (req, res, next) => {
   // res.redirect(`${linkprefix}`);
 
 };
+dropzoneUpload = async (req, res, next) => {
+  upload(req, res, async (err) => {
+    console.log(req.file);
+    return;
+    if (err) {
+      console.log(err);
+      res.status(500).json({ error: 'Error uploading file' });
+    } else {
+      const filePath = path.join(req.file.filename);
+      const {_id} = req.body._id;
+      await updateItem(_id, { listImage: filePath });
+      req.flash("success", "Update image thành công", false);
+      res.redirect(`${linkprefix}all`);
+    }
+  });
+}
 
 }
 
