@@ -9,7 +9,6 @@ const {
   getStatusCounts,
 } = require("../../services/news.services");
 const { imageHelper } = require("../../helper/news.helper");
-const {upload}=require('../../helper/dropzone.helper');
 const { body, validationResult } = require("express-validator");
 const mainName = 'news';
 const linkprefix = `/admin/${mainName}/`;
@@ -103,7 +102,34 @@ class NewsController {
       }
     });
   };
-  
+   
+  dropzoneUpload = async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        req.flash("danger", "Invalid operation", false);
+        return res.redirect(`${linkprefix}all`);
+    }
+
+    if (!req.files || req.files.length === 0) {
+        req.flash("danger", "No files were uploaded", false);
+        return res.redirect(`${linkprefix}all`);
+    }
+
+    try {
+      
+        req.files.forEach(file => {
+            console.log("Uploaded file:", file.filename);
+            
+        });
+
+        req.flash("success", "Files uploaded successfully", false);
+        res.redirect(`${linkprefix}all`);
+    } catch (error) {
+        console.error('Error processing uploaded files:', error);
+        req.flash("danger", "An error occurred while processing files", false);
+        res.redirect(`${linkprefix}all`);
+    }
+};
 
   deleteItem = async (req, res, next) => {
     let { id } = req.params;
@@ -217,22 +243,8 @@ statusTool = async (req, res, next) => {
   // res.redirect(`${linkprefix}`);
 
 };
-dropzoneUpload = async (req, res, next) => {
-  upload(req, res, async (err) => {
-    console.log(req.file);
-    return;
-    if (err) {
-      console.log(err);
-      res.status(500).json({ error: 'Error uploading file' });
-    } else {
-      const filePath = path.join(req.file.filename);
-      const {_id} = req.body._id;
-      await updateItem(_id, { listImage: filePath });
-      req.flash("success", "Update image thành công", false);
-      res.redirect(`${linkprefix}all`);
-    }
-  });
-}
+
+
 
 }
 

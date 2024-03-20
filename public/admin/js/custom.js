@@ -107,30 +107,7 @@ jQuery(document).ready(function($)  {
   });
 });
 
-Dropzone.options.myDropzone = {
-  url: "/admin/news/dropzone", 
-  paramName: "file", 
-  maxFilesize: 2, 
-  acceptedFiles: ".jpg,.jpeg,.png,.gif", 
-  addRemoveLinks: true, 
-  dictDefaultMessage: "Drop files here or click to upload", 
-  
-  init: function () {
-      var myDropzone = this;
-     
-      this.element.querySelector(".start").addEventListener("click", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          myDropzone.processQueue(); 
-      });
-      
-      this.element.querySelector(".cancel").addEventListener("click", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          myDropzone.removeAllFiles(); 
-      });
-  }
-};
+
 
 
 const fetchDataWithSorting = async (status, keyword, sort) => {
@@ -216,4 +193,39 @@ function calculateExpiryDate() {
 // Event listener for input change
 document.getElementById('expirateDays').addEventListener('input', function() {
   calculateExpiryDate();
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const myDropzone = new Dropzone("#my-dropzone");
+
+  const submitButton = document.getElementById("startUploadBtn");
+  const cancelUploadBtn = document.getElementById("cancelUploadBtn");
+
+  submitButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (myDropzone.files.length > 0) {
+          myDropzone.processQueue();
+      } else {
+          e.target.form.submit();
+      }
+  });
+
+  cancelUploadBtn.addEventListener("click", () => {
+      myDropzone.removeAllFiles();
+      submitButton.disabled = true;
+      cancelUploadBtn.disabled = true;
+  });
+
+  myDropzone.on("addedfile", () => {
+      submitButton.disabled = false;
+      cancelUploadBtn.disabled = false;
+  });
+
+  myDropzone.on("queuecomplete", () => {
+      submitButton.disabled = true;
+      cancelUploadBtn.disabled = true;
+  });
 });
