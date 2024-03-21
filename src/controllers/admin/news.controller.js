@@ -21,18 +21,12 @@ class NewsController {
   getAll = async (req, res, next) => {
     let { status } = req.params;
     let keyword = req.query.keywords;
-
     let data;
     const statusCounts = await getStatusCounts();
-
-    if (status) {
-      data = await getItems(status, keyword);
-    } else {
-      data = await getItems();
-    }
+    status?data=await getItems(status, keyword):data=await getItems();
     data.sort((a, b) => a.ordering - b.ordering);
 
-    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
+    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword });
 };
 
 

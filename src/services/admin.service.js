@@ -10,7 +10,7 @@ class adminService {
   }
    
   async getAllcategory(){
-     return await categoryModel.find({special:false}).select('name');
+     return await categoryModel.find({special:false}).select('name slug');
   }
 
   async getAllcategoryProduct(){

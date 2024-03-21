@@ -119,3 +119,6 @@ document.getElementById('hiddentotal').value = total;
   
   charging();
   document.getElementById('listaddress').addEventListener('change', charging);
+
+
+ 

@@ -4,6 +4,7 @@ const categoryProductModel=require('../model/productCategory.model');
 const settingModel=require('../model/setting.model');
 const newsModel=require('../model/news.model');
 const addressModel=require('../model/address.model');
+const couponModel=require('../model/coupon.model');
 class productService {
  
   
@@ -21,6 +22,10 @@ class productService {
   }
   async getAlladdress(){
     return await addressModel.find({status:'active'}).sort({ordering:1}).select('name charging _id');
+  }
+ 
+  async getAllcoupon(){
+    return await couponModel.find({status:'active'}).sort({ordering:1});
   }
 
 }

@@ -30,6 +30,10 @@ router.use(async(req,res,next)=>{
     next();
  })
 
+ router.use(async(req,res,next)=>{
+    res.locals.listcoupon=await productService.getAllcoupon();
+    next();
+ })
 
 router.use('/',require('./home'));
 router.use('/home',require('./home'));

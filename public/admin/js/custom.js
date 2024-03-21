@@ -195,37 +195,19 @@ document.getElementById('expirateDays').addEventListener('input', function() {
   calculateExpiryDate();
 });
 
-
-document.addEventListener('DOMContentLoaded', () => {
-  const myDropzone = new Dropzone("#my-dropzone");
-
-  const submitButton = document.getElementById("startUploadBtn");
-  const cancelUploadBtn = document.getElementById("cancelUploadBtn");
-
-  submitButton.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (myDropzone.files.length > 0) {
-          myDropzone.processQueue();
-      } else {
-          e.target.form.submit();
-      }
+document.addEventListener("DOMContentLoaded", function() {
+  Dropzone.autoDiscover = false;
+  var myDropzone = new Dropzone("#my-dropzone", {
+      url: "/admin/news/dropzone/<%= item._id %>",
+      autoProcessQueue: false,
+      addRemoveLinks: true,
+      dictDefaultMessage: "Drop files here or click to upload",
+      dictRemoveFile: "Remove",
+      dictCancelUpload: "Cancel",
+      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
   });
 
-  cancelUploadBtn.addEventListener("click", () => {
-      myDropzone.removeAllFiles();
-      submitButton.disabled = true;
-      cancelUploadBtn.disabled = true;
-  });
-
-  myDropzone.on("addedfile", () => {
-      submitButton.disabled = false;
-      cancelUploadBtn.disabled = false;
-  });
-
-  myDropzone.on("queuecomplete", () => {
-      submitButton.disabled = true;
-      cancelUploadBtn.disabled = true;
+  document.getElementById('Uploadcancel').addEventListener("click", function() {
+      myDropzone.removeAllFiles(true);
   });
 });
