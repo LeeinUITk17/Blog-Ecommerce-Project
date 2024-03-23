@@ -2,6 +2,7 @@ const{
     login,
     register,
 }=require('../../services/login.service');
+const passport = require('passport');
 class UserController {
      getAll=async(req, res, next)=> {
         try {
@@ -23,7 +24,10 @@ class UserController {
         console.table(req.body);
         await register(req.body);
         await login(req,req.body);
-        return res.redirect('/shop');
+        await passport.authenticate('local', {
+            successRedirect:'/shop',
+               failureRedirect:'/shop/login',
+         })(req, res, next);
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login/form');
@@ -33,7 +37,10 @@ class UserController {
 login = async (req, res, next) => {
     try {
       await login(req,req.body);
-        return await res.redirect('/shop/home');
+      await passport.authenticate('local', {
+        successRedirect:'/shop',
+           failureRedirect:'/shop/login',
+     })(req, res, next);
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login');

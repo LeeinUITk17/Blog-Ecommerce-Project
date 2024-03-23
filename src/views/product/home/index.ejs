@@ -5,8 +5,8 @@
 
       <!-- Start Column 1 -->
       <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-        <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-        <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
+        <h2 class="mb-4 section-title">Our featured product catalog.</h2>
+        <p class="mb-4">Gol D. Roger said: "We came here, found the text, and followed it's guidance." </p>
         <p><a href="/shop/shop" class="btn">Explore</a></p>
       </div> 
       <!-- End Column 1 -->
@@ -14,7 +14,8 @@
       <!-- Start Column 2 -->
       <%
       let renderedCategories = new Set();
-      listproduct.forEach((item) => {
+      const shuffledProducts = listproduct.sort(() => Math.random() - 0.5);
+      shuffledProducts.forEach((item) => {
           if (!renderedCategories.has(item.category)) {
               renderedCategories.add(item.category);
       %>
@@ -31,7 +32,7 @@
       <%
           }
       });
-      %>
+%>
 
     </div>
   </div>
@@ -44,7 +45,6 @@
     <div class="row justify-content-between">
       <div class="col-lg-6">
         <h2 class="section-title">Why Choose Us</h2>
-        <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
 
         <div class="row my-5">
           <div class="col-6 col-md-6">
@@ -53,7 +53,7 @@
                 <img src="/product/images/truck.svg" alt="Image" class="imf-fluid">
               </div>
               <h3>Fast &amp; Free Shipping</h3>
-              <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+              <p>Fast delivery like how Luffy clears out a feast in Alabasta.</p>
             </div>
           </div>
 
@@ -63,7 +63,7 @@
                 <img src="/product/images/bag.svg" alt="Image" class="imf-fluid">
               </div>
               <h3>Easy to Shop</h3>
-              <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+              <p>Easily choose your favorite products, closing the deal is as easy as how Zoro slices Pica in the Dressrosa arc.</p>
             </div>
           </div>
 
@@ -73,7 +73,7 @@
                 <img src="/product/images/support.svg" alt="Image" class="imf-fluid">
               </div>
               <h3>24/7 Support</h3>
-              <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+              <p>Always supporting you, trustworthy and reliable, like how Chopper heals his allies in the Wano arc.</p>
             </div>
           </div>
 
@@ -83,7 +83,7 @@
                 <img src="/product/images/return.svg" alt="Image" class="imf-fluid">
               </div>
               <h3>Hassle Free Returns</h3>
-              <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
+              <p>We always have a 7-day return policy, just like how Zeff said," 'It's terrifying to buy something you don't like amidst the vast ocean."</p>
             </div>
           </div>
 
@@ -92,7 +92,7 @@
 
       <div class="col-lg-5">
         <div class="img-wrap">
-          <img src="/product/images/figureKing.jpg" alt="Image" class="img-fluid">
+          <img src="/product/images/figureAce.jpg" alt="Image" class="img-fluid">
         </div>
       </div>
 
@@ -111,16 +111,16 @@
         </div>
       </div>
       <div class="col-lg-5 ps-lg-5">
-        <h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
-        <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+        <h2 class="section-title mb-4">We provide products when one look and true One Piece fans will know.</h2>
+        
 
         <ul class="list-unstyled custom-list my-4">
-          <li>Donec vitae odio quis nisl dapibus malesuada</li>
-          <li>Donec vitae odio quis nisl dapibus malesuada</li>
-          <li>Donec vitae odio quis nisl dapibus malesuada</li>
-          <li>Donec vitae odio quis nisl dapibus malesuada</li>
+          <li>Fast delivery like how Luffy clears out a feast in Alabasta. By "Trust me Bro (~-_-)~"</li>
+          <li>losing the deal is as easy as how Zoro slices Pica in the Dressrosa arc.</li>
+          <li>Always supporting you, trustworthy and reliable, like how Chopper heals his allies in the Wano arc.</li>
+          <li>Always have a 7-day return policy," It's terrifying to buy something you don't like amidst the vast ocean."</li>
         </ul>
-        <p><a herf="#" class="btn">Explore</a></p>
+        <p><a href="/shop/shop" class="btn">Explore</a></p>
       </div>
     </div>
   </div>

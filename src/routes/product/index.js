@@ -1,39 +1,14 @@
 const express = require('express');
 const productService = require('../../services/product.service');
 const router = express.Router();
+const middleware=require('../../middleware/product');
 
 router.use((req, res, next) => {
-    res.locals.layout = 'product';
-    next();
+    req.app.set('layout','product');
+    middleware(req, res, next);
 });
 
-router.use(async(req,res,next)=>{
-    res.locals.listproduct=await productService.getAllproduct();
-    next();
-})
 
-router.use(async(req,res,next)=>{
-    res.locals.listcategoryproduct=await productService.getAllcategoryProduct();
-    next();
-})
-
-router.use(async(req,res,next)=>{
-    res.locals.listsetting=await productService.getAllsetting();
-    next();
-})
-router.use(async(req,res,next)=>{
-    res.locals.listnews=await productService.getAllnews();
-    next();
-})
- router.use(async(req,res,next)=>{
-    res.locals.listaddress=await productService.getAlladdress();
-    next();
- })
-
- router.use(async(req,res,next)=>{
-    res.locals.listcoupon=await productService.getAllcoupon();
-    next();
- })
 
 router.use('/',require('./home'));
 router.use('/home',require('./home'));
