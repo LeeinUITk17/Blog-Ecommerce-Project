@@ -22,12 +22,14 @@ class UserController {
     register = async (req, res, next) => {
     try {
         console.table(req.body);
-        await register(req.body);
-        await login(req,req.body);
-        await passport.authenticate('local', {
-            successRedirect:'/shop',
-               failureRedirect:'/shop/login',
-         })(req, res, next);
+       const user= await register(req.body);
+       req.login(user, (err) => {
+        if (err) {
+            req.flash('error', err.message);
+            return res.render('product/shop/login');
+        }
+        return res.redirect('/shop'); 
+    });
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login/form');
