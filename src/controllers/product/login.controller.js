@@ -36,11 +36,23 @@ class UserController {
 
 login = async (req, res, next) => {
     try {
-      await login(req,req.body);
-      await passport.authenticate('local', {
-        successRedirect:'/shop',
-           failureRedirect:'/shop/login',
-     })(req, res, next);
+        passport.authenticate('local', (err, user) => {
+            if (err) {
+                req.flash('error', err.message);
+                return res.render('product/shop/login');
+            }
+            if (!user) {
+                req.flash('error', 'Invalid username or password');
+                return res.redirect('/shop/login');
+            }
+            req.login(user, (err) => {
+                if (err) {
+                    req.flash('error', err.message);
+                    return res.render('product/shop/login');
+                }
+                return res.redirect('/shop');
+            });
+        })(req, res, next);
     } catch (err) {
         req.flash('error', err.message);
         return res.render('product/shop/login');
