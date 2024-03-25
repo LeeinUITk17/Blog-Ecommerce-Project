@@ -30,7 +30,6 @@ class HomepageController {
                     }
                 }
             }
-
             res.render('product/home');
         } catch (error) {
             console.error('Error:', error);

@@ -39,5 +39,5 @@ router.use('/blog', require('./blog'));
 router.use('/thanks', require('./thanks'));
 router.use('/viewproduct', require('./viewproduct'));
 router.use('/login', require('./login'));
-
+router.use('/account',require('./account'));
 module.exports = router;
