@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const middleware = require('../../middleware/product');
-
+const { verifyToken } = require('../../helper/jwt.helper');
+const devKey=require('../../helper/devkey');
+const { stringify } = require('uuid');
 router.use((req, res, next) => {
     req.app.set('layout', 'product');
     if (req.baseUrl !== '/login') 
@@ -12,7 +14,20 @@ router.use((req, res, next) => {
     }
 });
 
-router.use('/', require('./home'));
+router.use((req, res, next) => {
+    const token = req.cookies.jwt;
+   // console.log(devKey);
+    if (token) {
+        const decoded = verifyToken(token, devKey);
+     //   console.log(decoded);
+        if (decoded) {
+            req.user = decoded;
+        }
+    }
+    next();
+});
+
+router.use('/',require('./home'));
 router.use('/home', require('./home'));
 router.use('/cart', require('./cart'));
 router.use('/checkout', require('./checkout'));

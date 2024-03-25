@@ -18,7 +18,7 @@ passport.use(new LocalStrategy(
       if (!user || !await verifyPassword(password,user)) {
         return done(null, false, { message: 'Incorrect username or password' });
       }
-      console.log(user);
+     // console.log(user);
       return done(null, user);
     } catch (error) {
       return done(error);

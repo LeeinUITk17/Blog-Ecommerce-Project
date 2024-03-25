@@ -26,12 +26,10 @@ const deleteItem = async (id) => {
 };
 
 const updateItem = async (id, body) => {
-  try {
-    await usermodel.findByIdAndUpdate(id, { $set: { userinformation: body.userinformation, role: body.role } });
-  } catch (error) {
-    console.error(error);
-    throw new Error('Update failed');
-  }
+  await usermodel.findByIdAndUpdate(
+    { _id: new mongoose.Types.ObjectId(id) },
+    { $set: body }
+  );
 };
 
 const getStatusCounts = async () => {
