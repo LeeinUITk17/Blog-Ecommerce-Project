@@ -22,6 +22,7 @@ router.use((req, res, next) => {
      //   console.log(decoded);
         if (decoded) {
             req.user = decoded;
+            req.app.locals.user = decoded;
         }
     }
     next();
