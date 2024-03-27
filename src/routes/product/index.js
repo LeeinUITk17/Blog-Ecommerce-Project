@@ -16,17 +16,23 @@ router.use((req, res, next) => {
 
 router.use((req, res, next) => {
     const token = req.cookies.jwt;
-   // console.log(devKey);
     if (token) {
         const decoded = verifyToken(token, devKey);
-     //   console.log(decoded);
         if (decoded) {
             req.user = decoded;
-            req.app.locals.user = decoded;
         }
     }
     next();
 });
+router.use((req,res,next)=>{
+    const user=req.user;
+            if(user){
+                res.locals.user=user;
+            }else{
+                res.locals.user=null;
+            }
+            next();
+})
 
 router.use('/',require('./home'));
 router.use('/home', require('./home'));
@@ -41,4 +47,5 @@ router.use('/thanks', require('./thanks'));
 router.use('/viewproduct', require('./viewproduct'));
 router.use('/login', require('./login'));
 router.use('/account',require('./account'));
+
 module.exports = router;

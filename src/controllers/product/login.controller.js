@@ -73,6 +73,19 @@ login = async (req, res, next) => {
         return res.render('product/shop/login');
     }
 };
+logout = async (req, res, next) => {
+    try {
+        res.clearCookie('jwt');
+        req.logout((err) => {
+            if (err) {
+                return next(err); 
+            }
+            return res.redirect('/shop/home');
+        });
+    } catch (err) {
+        next(err);
+    }
+};
 
 
 }

@@ -30,6 +30,12 @@ class HomepageController {
                     }
                 }
             }
+            const user=req.user;
+            if(user){
+                res.locals.user=user;
+            }else{
+                res.locals.user=null;
+            }
             res.render('product/home');
         } catch (error) {
             console.error('Error:', error);
