@@ -7,7 +7,7 @@ router.use((req,res,next)=>{
     middleware(req,res,next);
 })
 router.use('/login' , require('./login'));
-router.use(role);
+//router.use(role);
 
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
