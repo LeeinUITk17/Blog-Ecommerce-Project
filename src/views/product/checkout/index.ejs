@@ -71,6 +71,7 @@
               <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
             </div>
 
+<<<<<<< HEAD
             <div class="form-group row">
               <div class="col-md-6">
                 <label for="c_state_country" class="text-black">State / Country <span class="text-danger">*</span></label>
@@ -181,6 +182,80 @@
 
                 </div>
 
+=======
+        <div class="row mb-5">
+          <div class="col-md-12">
+              <h2 class="h3 mb-3 text-black">Coupon Code</h2>
+              <div class="p-3 p-lg-5 border bg-white">
+                  <label for="coupon" class="text-black mb-3">Enter your coupon code if you have one</label>
+                  <div class="input-group w-75 couponcode-wrap">
+                      <input type="text" class="form-control me-2" name="coupon" id="coupon" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2">
+                      <div class="input-group-append">
+                          <button class="btn btn-black btn-sm" type="button" id="button-addon2">Apply</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      
+        <!-- <input type="hidden" class="form-control me-2" value="" name="coupon" id="coupon" placeholder="Coupon Code" aria-label="Coupon Code" aria-describedby="button-addon2"> -->
+        <div class="row mb-5">
+          <div class="col-md-12">
+            <h2 class="h3 mb-3 text-black">Your Order</h2>
+            <div class="p-3 p-lg-5 border bg-white">
+              <table class="table site-block-order-table mb-5">
+                <thead>
+                  <th>Product</th>
+                  <th>Total ($)</th>
+                </thead>
+                <tbody>
+                  <%
+                  const itemQuantities = {};
+                  let subtotal = 0; 
+                  
+                  data.forEach((item) => {
+                      const itemId = item._id.toString();
+                      itemQuantities[itemId] ? itemQuantities[itemId]++ : itemQuantities[itemId] = 1;
+                  });
+                  
+                  const renderedIds = new Set();
+                  
+                  data.forEach((item,index) => {
+                      const itemId = item._id.toString();
+                      if (!renderedIds.has(itemId)) {
+                          renderedIds.add(itemId);
+                          subtotal += item.price * (itemQuantities[itemId] || 0); 
+                  %>
+                  <tr>
+                    <td><%= item.name %><strong class="mx-2">x</strong><%= itemQuantities[itemId] || 0 %></td>
+                    <td><%= item.price%></td>
+                  </tr>
+                  <input type="hidden" name="list[<%= index %>][id]" value="<%= item._id %>">
+                  <input type="hidden" name="list[<%= index %>][name]" value="<%= item.name %>">
+  <input type="hidden" name="list[<%= index %>][quantity]" value="<%= itemQuantities[item._id.toString()] || 0 %>">
+  <input type="hidden" name="list[<%= index %>][price]" value="<%= item.price %>">
+                  <% }
+                  });
+                  %>
+                  <tr>
+      <td class="text-black font-weight-bold"><strong>Shipping Fee</strong></td>
+      <td class="text-black font-weight-bold" id="shipping_fee"><strong></strong></td>
+    </tr>
+                  <tr>
+                    <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                    <td class="text-black" id="subtotal"><%= parseInt(subtotal.toFixed(2)) %></td>
+                  </tr>
+                  <tr>
+                    <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                    <td class="text-black font-weight-bold" id="total"></td>
+                  </tr>
+                </tbody>
+              </table>
+              <input type="hidden" id="hiddentotal" name="total">              
+              <div class="form-group">
+                <button type="submit" class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='/shop/thanks'">Place Order</button>
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
               </div>
             </div>
 

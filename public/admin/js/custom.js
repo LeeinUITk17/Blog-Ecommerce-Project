@@ -107,6 +107,7 @@ jQuery(document).ready(function($)  {
   });
 });
 
+<<<<<<< HEAD
 Dropzone.options.myDropzone = {
   url: "/admin/news/dropzone", 
   paramName: "file", 
@@ -125,6 +126,9 @@ Dropzone.options.myDropzone = {
       });
   }
 };
+=======
+
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
 
 
 const fetchDataWithSorting = async (status, keyword, sort) => {
@@ -210,4 +214,21 @@ function calculateExpiryDate() {
 // Event listener for input change
 document.getElementById('expirateDays').addEventListener('input', function() {
   calculateExpiryDate();
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  Dropzone.autoDiscover = false;
+  var myDropzone = new Dropzone("#my-dropzone", {
+      url: "/admin/news/dropzone/<%= item._id %>",
+      autoProcessQueue: false,
+      addRemoveLinks: true,
+      dictDefaultMessage: "Drop files here or click to upload",
+      dictRemoveFile: "Remove",
+      dictCancelUpload: "Cancel",
+      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
+  });
+
+  document.getElementById('Uploadcancel').addEventListener("click", function() {
+      myDropzone.removeAllFiles(true);
+  });
 });

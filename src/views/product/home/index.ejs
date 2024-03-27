@@ -28,6 +28,7 @@
     <div class="container">
         <div class="row">
 
+<<<<<<< HEAD
             <!-- Start Column 1 -->
             <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
                 <h2 class="mb-4 section-title">Chúng tôi cho thuê nhiều loại xe khác nhau.</h2>
@@ -42,6 +43,38 @@
                     <img src="/product/images/product-2.png" class="img-fluid product-thumbnail">
                     <h3 class="product-title">Wave</h3>
                     <strong class="product-price">50.000₫/ 1 ngày</strong>
+=======
+      <!-- Start Column 1 -->
+      <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
+        <h2 class="mb-4 section-title">Our featured product catalog.</h2>
+        <p class="mb-4">Gol D. Roger said: "We came here, found the text, and followed it's guidance." </p>
+        <p><a href="/shop/shop" class="btn">Explore</a></p>
+      </div> 
+      <!-- End Column 1 -->
+
+      <!-- Start Column 2 -->
+      <%
+      let renderedCategories = new Set();
+      const shuffledProducts = listproduct.sort(() => Math.random() - 0.5);
+      shuffledProducts.forEach((item) => {
+          if (!renderedCategories.has(item.category)) {
+              renderedCategories.add(item.category);
+      %>
+          <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
+              <a class="product-item" href="/shop/viewproduct/<%= item._id%>">
+                  <img src="/<%= item.avatar%>" class="img-fluid product-thumbnail">
+                  <h3 class="product-title"><%= item.name%></h3>
+                  <strong class="product-price">$<%= item.price%></strong>
+                  <span class="icon-cross">
+                      <img src="/product/images/cross.svg" class="img-fluid">
+                  </span>
+              </a>
+          </div>
+      <%
+          }
+      });
+%>
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
 
                     <span class="icon-cross">
                         <img src="/product/images/cross.svg" class="img-fluid">
@@ -85,6 +118,7 @@
 
 <!-- Start Why Choose Us Section -->
 <div class="why-choose-section">
+<<<<<<< HEAD
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-6">
@@ -141,15 +175,72 @@
                 <div class="img-wrap">
                     <img src="/product/images/why-choose-us-img.jpg" alt="Image" class="img-fluid">
                 </div>
+=======
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-6">
+        <h2 class="section-title">Why Choose Us</h2>
+
+        <div class="row my-5">
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img src="/product/images/truck.svg" alt="Image" class="imf-fluid">
+              </div>
+              <h3>Fast &amp; Free Shipping</h3>
+              <p>Fast delivery like how Luffy clears out a feast in Alabasta.</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img src="/product/images/bag.svg" alt="Image" class="imf-fluid">
+              </div>
+              <h3>Easy to Shop</h3>
+              <p>Easily choose your favorite products, closing the deal is as easy as how Zoro slices Pica in the Dressrosa arc.</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img src="/product/images/support.svg" alt="Image" class="imf-fluid">
+              </div>
+              <h3>24/7 Support</h3>
+              <p>Always supporting you, trustworthy and reliable, like how Chopper heals his allies in the Wano arc.</p>
+            </div>
+          </div>
+
+          <div class="col-6 col-md-6">
+            <div class="feature">
+              <div class="icon">
+                <img src="/product/images/return.svg" alt="Image" class="imf-fluid">
+              </div>
+              <h3>Hassle Free Returns</h3>
+              <p>We always have a 7-day return policy, just like how Zeff said," 'It's terrifying to buy something you don't like amidst the vast ocean."</p>
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
             </div>
 
         </div>
+<<<<<<< HEAD
+=======
+      </div>
+
+      <div class="col-lg-5">
+        <div class="img-wrap">
+          <img src="/product/images/figureAce.jpg" alt="Image" class="img-fluid">
+        </div>
+      </div>
+
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
     </div>
 </div>
 <!-- End Why Choose Us Section -->
 
 <!-- Start We Help Section -->
 <div class="we-help-section">
+<<<<<<< HEAD
     <div class="container">
         <div class="row justify-content-between">
             <div class="col-lg-7 mb-5 mb-lg-0">
@@ -157,6 +248,48 @@
                     <div class="grid grid-1"><img src="/product/images/img-grid-1.jpg" alt="Image"></div>
                     <div class="grid grid-2"><img src="/product/images/img-grid-2.jpg" alt="Image"></div>
                     <div class="grid grid-3"><img src="/product/images/img-grid-3.jpg" alt="Image"></div>
+=======
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-7 mb-5 mb-lg-0">
+        <div class="imgs-grid">
+          <div class="grid grid-1"><img src="/product/images/figurezoro.jpg" alt="Untree.co"></div>
+          <div class="grid grid-2"><img src="/product/images/figureKing.jpg" alt="Untree.co"></div>
+          <div class="grid grid-3"><img src="/product/images/figureluffy.jpg" alt="Untree.co"></div>
+        </div>
+      </div>
+      <div class="col-lg-5 ps-lg-5">
+        <h2 class="section-title mb-4">We provide products when one look and true One Piece fans will know.</h2>
+        
+
+        <ul class="list-unstyled custom-list my-4">
+          <li>Fast delivery like how Luffy clears out a feast in Alabasta. By "Trust me Bro (~-_-)~"</li>
+          <li>losing the deal is as easy as how Zoro slices Pica in the Dressrosa arc.</li>
+          <li>Always supporting you, trustworthy and reliable, like how Chopper heals his allies in the Wano arc.</li>
+          <li>Always have a 7-day return policy," It's terrifying to buy something you don't like amidst the vast ocean."</li>
+        </ul>
+        <p><a href="/shop/shop" class="btn">Explore</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popular-product">
+  <div class="container">
+    <div class="row">
+
+      <% listcategoryproduct.forEach((item) => { %>
+    <% if (!item.special) { %>
+        <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+            <div class="product-item-sm d-flex">
+                <div class="thumbnail">
+                    <img src="/<%= item.avatar%>" alt="Image" class="img-fluid">
+                </div>
+                <div class="pt-3">
+                    <h3><%= item.name%></h3>
+                    <p><%= item.description%> </p>
+                    <p><a href="/shop/shop/detail/<%= item.name%>">Read More</a></p>
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
                 </div>
             </div>
             <div class="col-lg-5 ps-lg-5">
@@ -415,4 +548,45 @@
 
         </div>
     </div>
+<<<<<<< HEAD
+=======
+
+    <div class="row">
+      <%
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
+  const shuffledNews = shuffleArray(listnews);
+  const nonrenderedCategories = new Set();
+  shuffledNews.forEach((item) => {
+    if (!nonrenderedCategories.has(item.category)) {
+      nonrenderedCategories.add(item.category);
+%>
+
+<div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
+  <div class="post-entry">
+    <a href="/news/<%= item._id%>" class="post-thumbnail"><img src="/<%= item.avatar%>" alt="Image" class="img-fluid" width="80%" height="auto"></a>
+    <div class="post-content-entry">
+      <h3><a href="/news/<%= item._id%>"><%= item.name%></a></h3>
+      <div class="meta">
+        <span>by <a href="/news/<%= item._id%>"><%= item.description%></a></span>
+        <span>on <a href="/news/<%= item._id%>"><%= item.createdAt.toISOString().split('T')[0] %></a></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%
+    }
+  });
+%>
+
+    </div>
+  </div>
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
 </div>

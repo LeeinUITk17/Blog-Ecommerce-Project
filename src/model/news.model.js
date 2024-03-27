@@ -3,6 +3,12 @@ const mongoose = require("mongoose");
 
 const COLLECTION_NAME = "News";
 
+const List=new Schema({
+  Image:{
+    type:String,
+  }
+})
+
 const newSchema = new Schema(
   {
     name: {
@@ -40,10 +46,10 @@ const newSchema = new Schema(
       type: Date,
       default: Date.now,
   },
-  listImage:{
-    type:Array,
+   List:{
+    type: [List],
     default:[],
-  },
+   }
   },
   {
     timestamps: true,

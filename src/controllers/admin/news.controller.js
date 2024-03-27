@@ -9,7 +9,6 @@ const {
   getStatusCounts,
 } = require("../../services/news.services");
 const { imageHelper } = require("../../helper/news.helper");
-const {upload}=require('../../helper/dropzone.helper');
 const { body, validationResult } = require("express-validator");
 const mainName = 'news';
 const linkprefix = `/admin/${mainName}/`;
@@ -22,18 +21,12 @@ class NewsController {
   getAll = async (req, res, next) => {
     let { status } = req.params;
     let keyword = req.query.keywords;
-
     let data;
     const statusCounts = await getStatusCounts();
-
-    if (status) {
-      data = await getItems(status, keyword);
-    } else {
-      data = await getItems();
-    }
+    status?data=await getItems(status, keyword):data=await getItems();
     data.sort((a, b) => a.ordering - b.ordering);
 
-    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword, linkprefix });
+    res.render("admin/news", { data, statusfilter: this.getStatusFilter(statusCounts, status), keyword });
 };
 
 
@@ -103,7 +96,34 @@ class NewsController {
       }
     });
   };
-  
+   
+  dropzoneUpload = async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        req.flash("danger", "Invalid operation", false);
+        return res.redirect(`${linkprefix}all`);
+    }
+
+    if (!req.files || req.files.length === 0) {
+        req.flash("danger", "No files were uploaded", false);
+        return res.redirect(`${linkprefix}all`);
+    }
+
+    try {
+      
+        req.files.forEach(file => {
+            console.log("Uploaded file:", file.filename);
+            
+        });
+
+        req.flash("success", "Files uploaded successfully", false);
+        res.redirect(`${linkprefix}all`);
+    } catch (error) {
+        console.error('Error processing uploaded files:', error);
+        req.flash("danger", "An error occurred while processing files", false);
+        res.redirect(`${linkprefix}all`);
+    }
+};
 
   deleteItem = async (req, res, next) => {
     let { id } = req.params;
@@ -217,6 +237,7 @@ statusTool = async (req, res, next) => {
   // res.redirect(`${linkprefix}`);
 
 };
+<<<<<<< HEAD
 dropzoneUpload = async (req, res, next) => {
   const {id}=req.params;
   upload(req, res, async (err) => {
@@ -235,6 +256,10 @@ dropzoneUpload = async (req, res, next) => {
     }
   });
 }
+=======
+
+
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
 
 }
 

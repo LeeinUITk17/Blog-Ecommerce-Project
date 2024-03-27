@@ -1,8 +1,9 @@
 const bcrypt = require('bcrypt');
 const usermodel = require('../model/user.model');
 const jwt = require('jsonwebtoken'); 
-
-
+const crypto = require('crypto');
+const SECRET_KEY = crypto.randomBytes(64).toString('hex');
+const devKey= require('../helper/devkey');
 const register = async (body) => {
   try {
       const user = new usermodel(body);
@@ -27,8 +28,8 @@ const login = async (req, body) => {
     if (!isMatch) {
       throw new Error('Invalid username or password');
     }
-    req.session.userId = user._id;
-    const auth = jwt.sign({ userId: user._id }, `${user._id}`);
+    const userWithoutPassword = { ...user._doc, password: undefined };
+    const auth = jwt.sign(userWithoutPassword, 'cnttvietnhatk17');
     return auth;
   } catch (error) {
     console.error(error);

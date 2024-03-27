@@ -9,7 +9,8 @@ const {
   } = require("../../services/user.service");
   const mainName = 'user';
   const linkprefix = `/admin/${mainName}/`;
-   
+  const { imageHelper } = require("../../helper/news.helper");
+  const path=require('path');
   class userController {
   
     getAll = async (req, res, next) => {
@@ -39,9 +40,35 @@ const {
         res.render("admin/user/form", { data });
       }
     };
+    imageUpload = async (req, res, next) => {
+      const { id } = req.params;
+    
+      if (!id) {
+        req.flash("danger", "Invalid operation", false);
+        return res.redirect(`${linkprefix}all`);
+      }
+    
+      imageHelper(req, res, async (err) => {
+        try {
+          const filePath = path.join(req.file.filename);
+          req.body.file = filePath;
+    
+          await updateItem(id, { avatar: filePath });
+    
+          req.flash("success", "Update image thành công", false);
+          res.redirect(`${linkprefix}all`);
+        } catch (error) {
+          console.error('Error processing form:', error);
+          req.flash("danger", "An error occurred", false);
+          res.redirect(`${linkprefix}all`);
+        }
+      });
+    };
   
     addOrUpdateItem = async (req, res) => {
       const { id } = req.body;
+      // console.log(id);
+      // return;
       try {
         if (id) {
           await updateItem(id, req.body);

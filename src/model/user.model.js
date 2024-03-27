@@ -38,6 +38,10 @@ const newSchema = new Schema(
       default: "inactive",
       enum: ["active", "inactive"]
     },
+    avatar:{
+        type:String,
+        default:'none',
+    }
   },
   {
     timestamps: true,

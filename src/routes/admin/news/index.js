@@ -15,7 +15,6 @@ router.get("/delete/:id", newController.deleteItem);
 router.get('/changeStatus/:id/:status', newController.updateStatus);
 
 router.get("(/:status)?", newController.getAll);  
-
 router.get('(/:status)?',newController.statusCount);
 
 router.post("/changeStatusTool", newController.statusTool);

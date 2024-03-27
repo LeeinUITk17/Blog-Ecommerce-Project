@@ -16,6 +16,6 @@ router.get('/changeStatus/:id/:status', userController.updateStatus);
 router.get("(/:status)?", userController.getAll);  
 
 router.get('(/:status)?',userController.statusCount);
-
+router.post("/upload/:id", userController.imageUpload);
 router.post("/changeStatusTool", userController.statusTool);
 module.exports = router;

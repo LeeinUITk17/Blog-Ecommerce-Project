@@ -1,12 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const middleware = require('../../middleware/admin');
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
 router.use((req,res,next)=>{
     req.app.set('layout','admin');
     middleware(req,res,next);
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> cf89cc5b5dbe6795b4da8168c8dc382d85cd83e5
 router.use('/' , require('./dashboard'));
 router.use('/news' , require('./news'));
 router.use('/category',require('./category'));
