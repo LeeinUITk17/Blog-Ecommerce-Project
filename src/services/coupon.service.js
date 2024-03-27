@@ -26,7 +26,11 @@ const getItems = async (status, keyword) => {
 const getItemById = async (id) => {
   return await couponModel.findById(id).exec();
 };
-
+const getItemByCode = async (code) => {
+  return await couponModel.findOne({
+    code: code,
+  });
+};
 const deleteItem = async (id) => {
   return await couponModel.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
 };
@@ -53,4 +57,5 @@ module.exports = {
   getItemById,
   updateItem,
   getStatusCounts,
+  getItemByCode,
 };

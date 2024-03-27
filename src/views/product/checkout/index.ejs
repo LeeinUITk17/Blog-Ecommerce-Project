@@ -112,13 +112,18 @@
                   });
                   %>
                   <tr>
-      <td class="text-black font-weight-bold"><strong>Shipping Fee</strong></td>
-      <td class="text-black font-weight-bold" id="shipping_fee"><strong></strong></td>
-    </tr>
-                  <tr>
-                    <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                    <td class="text-black font-weight-bold"><strong>Cart Subtotal +</strong></td>
                     <td class="text-black" id="subtotal"><%= parseInt(subtotal.toFixed(2)) %></td>
                   </tr>
+                  <tr>
+      <td class="text-black font-weight-bold"><strong>Shipping Fee +</strong></td>
+      <td class="text-black font-weight-bold" id="shipping_fee"><strong></strong></td>
+    </tr>
+    <tr>
+      <td class="text-black font-weight-bold"><strong>Coupon charging -</strong></td>
+      <td class="text-black font-weight-bold" id="charging_coupon"><strong></strong></td>
+      </tr>
+                  
                   <tr>
                     <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
                     <td class="text-black font-weight-bold" id="total"></td>

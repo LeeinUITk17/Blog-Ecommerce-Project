@@ -102,23 +102,64 @@ const submitForm = () => {
     console.log('Submitting form');
     document.getElementById('checkoutForm').submit();
 };
+$(document).ready(function() {
+    $('#button-addon2').click(function(event) {
+		console.log(' function called');
+        event.preventDefault(); 
 
-  const charging = () => {
-	var selectElement = document.getElementById('listaddress');
-var selectedOption = selectElement.options[selectElement.selectedIndex];
-document.getElementById('shipping_fee').innerText = selectedOption.value;
-var id = selectedOption.getAttribute('data-id');
-document.getElementById('address_id').value = id;
-var subtotal = parseFloat(document.getElementById('subtotal').innerText);
-var shipping_fee = parseFloat(selectedOption.value);
-var total = subtotal + shipping_fee;
+        var couponCode = $('#coupon').val();
 
-document.getElementById('total').innerText = total;
-document.getElementById('hiddentotal').value = total;
-  };
+        $.ajax({
+            url: '/shop/checkout/checkpoupon', 
+            method: 'POST',
+            data: { coupon: couponCode },
+            success: function(response) {
+                if (response.valid) {
+					console.log(response.value);
+                    alert('Coupon is valid!');
+					$('#charging_coupon').text(response.value);
+                } else {
+                    alert('Coupon is not valid!');
+					$('#charging_coupon').text('0');
+                }
+            }
+        });
+    });
+});
+
+const charging = () => {
+    var selectElement = document.getElementById('listaddress');
+    var selectedOption = selectElement.options[selectElement.selectedIndex];
+    document.getElementById('shipping_fee').innerText = selectedOption.value;
+    var id = selectedOption.getAttribute('data-id');
+    document.getElementById('address_id').value = id;
+    var subtotal = parseFloat(document.getElementById('subtotal').innerText);
+    var shipping_fee = parseFloat(selectedOption.value);
+    var coupon = parseFloat(document.getElementById('charging_coupon').innerText);
+    
+    console.log("subtotal:", subtotal);
+    console.log("shipping_fee:", shipping_fee);
+    console.log("coupon:", coupon);
+
+    var total;
+
+    if (!isNaN(coupon)) {
+        total = (subtotal + shipping_fee - coupon).toFixed(2);
+    } else {
+        total = (subtotal + shipping_fee).toFixed(2);
+    }
+
+    console.log("total:", total);
+
+    document.getElementById('total').innerText = total;
+    document.getElementById('hiddentotal').value = total;
+};
+
+
+charging();
+document.getElementById('listaddress').addEventListener('change', charging);
+
   
-  charging();
-  document.getElementById('listaddress').addEventListener('change', charging);
 
 
  

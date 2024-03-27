@@ -6,6 +6,9 @@ const {
   updateItem,
   getStatusCounts,
 } = require("../../services/productView.service");
+const {
+    getItemByCode,
+}= require("../../services/coupon.service");
 const jwt = require('jsonwebtoken');
   const jwtHelper = require('../../helper/jwt.helper');
 const {  generateToken,
@@ -41,6 +44,21 @@ class checkoutController {
         return res.status(500).send('Internal Server Error');
     }
     }
+    checkpoupon = async (req, res, next) => {
+        try {
+            const couponcode = req.body.coupon; 
+            const coupon = await getItemByCode(couponcode);
+    
+            if (!coupon) {
+                return res.json({ valid: false });
+            } else {
+                return res.json({ valid: true ,value:coupon.value});
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    
 }
 
 module.exports = new checkoutController();
