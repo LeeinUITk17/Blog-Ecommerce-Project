@@ -20,5 +20,5 @@ router.get('(/:status)?',newController.statusCount);
 
 router.post("/changeStatusTool", newController.statusTool);
 router.post("/upload/:id", newController.imageUpload);
-router.post("/dropzone", newController.dropzoneUpload);
+router.post("/dropzone/:id", newController.dropzoneUpload);
 module.exports = router;

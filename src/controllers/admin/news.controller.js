@@ -218,17 +218,19 @@ statusTool = async (req, res, next) => {
 
 };
 dropzoneUpload = async (req, res, next) => {
+  const {id}=req.params;
   upload(req, res, async (err) => {
-    console.log(req.file);
-    return;
-    if (err) {
-      console.log(err);
-      res.status(500).json({ error: 'Error uploading file' });
-    } else {
+    try {
       const filePath = path.join(req.file.filename);
-      const {_id} = req.body._id;
-      await updateItem(_id, { listImage: filePath });
+      req.body.file = filePath;
+
+      await updateItem(id, { listImage: filePath });
+
       req.flash("success", "Update image thành công", false);
+      res.redirect(`${linkprefix}all`);
+    } catch (error) {
+      console.error('Error processing form:', error);
+      req.flash("danger", "An error occurred", false);
       res.redirect(`${linkprefix}all`);
     }
   });

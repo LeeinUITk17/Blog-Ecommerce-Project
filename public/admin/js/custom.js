@@ -117,12 +117,6 @@ Dropzone.options.myDropzone = {
   
   init: function () {
       var myDropzone = this;
-     
-      this.element.querySelector(".start").addEventListener("click", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-          myDropzone.processQueue(); 
-      });
       
       this.element.querySelector(".cancel").addEventListener("click", function (e) {
           e.preventDefault();

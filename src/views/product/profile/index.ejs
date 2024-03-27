@@ -1,0 +1,173 @@
+<head>
+    <link rel="stylesheet" href="/product/css/profile.css">
+</head>
+
+<div class="container light-style flex-grow-1 container-p-y">
+    <h4 class="font-weight-bold py-3 mb-4">
+        Quản lí tài khoản
+    </h4>
+    <div class="card overflow-hidden">
+        <div class="row no-gutters row-bordered row-border-light">
+            <div class="col-md-3 pt-0">
+                <div class="list-group list-group-flush account-settings-links">
+                    <a class="list-group-item list-group-item-action active" data-toggle="list"
+                        href="#account-general">Thông tin chung</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-change-password">Đổi mật khẩu</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-info">Thông tin cá nhân</a>
+                    <a class="list-group-item list-group-item-action" data-toggle="list"
+                        href="#account-social-links">Liên kết mạng xã hội</a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+                        <div class="card-body media align-items-center">
+                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt
+                                class="d-block ui-w-80">
+                            <div class="media-body ml-4">
+                                <label class="btn btn-outline-primary">
+                                    Thêm ảnh
+                                    <input type="file" class="account-settings-fileinput">
+                                </label> &nbsp;
+                                <div class="text-light small mt-1">Cho phép ảnh JPG, GIF or PNG. Tối đa 800K</div>
+                            </div>
+                        </div>
+
+                        <hr class="border-light m-0">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label class="form-label">Tài khoản: </label>
+                                <input type="text" class="form-control mb-1" value="username1" readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Họ và tên: </label>
+                                <input type="text" class="form-control" value="Người Dùng 1">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Email: </label>
+                                <input type="text" class="form-control mb-1" readonly value="nguoidung1@mail.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Địa chỉ làm việc: </label>
+                                <input type="text" class="form-control" value="UIT">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="account-change-password">
+                        <div class="card-body pb-2">
+                            <div class="form-group">
+                                <label class="form-label">Mật khẩu hiện tại: </label>
+                                <input type="password" class="form-control" placeholder="Nhập mật khẩu hiện tại">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Mật khẩu mới: </label>
+                                <input type="password" class="form-control" placeholder="Nhập mật khẩu mới">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nhập lại mật khẩu mới: </label>
+                                <input type="password" class="form-control" placeholder="Nhập lại mật khẩu mới">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="account-info">
+                        <hr class="border-light m-0">
+                        <div class="card-body pb-2">
+                            <h6 class="mb-4" style="font-size: 20px;"><strong>Thông tin cá nhân: </strong></h6>
+                            
+                            <div class="form-group">
+                                <label for="birthdate">Ngày sinh:</label>
+                                <input type="date" id="birthdate" name="birthdate">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Số CCCD: </label>
+                                <input type="text" class="form-control" value placeholder="Nhập ngày sinh">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Ngày cấp: </label>
+                                <input type="date" id="id_date" name="id_date">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Nơi cấp: </label>
+                                <input type="text" class="form-control" value placeholder="Nhập nơi cấp CCCD">
+                            </div>
+                        </div>
+
+                        <hr class="border-light m-0">
+                        <div class="card-body pb-2">
+                            <h6 class="mb-4" style="font-size: 20px;"><strong>Địa chỉ thường trú: </strong></h6>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Tỉnh/ Thành Phố: </label>
+                                <input type="text" class="form-control" value placeholder="Nhập tỉnh/ thành phố theo CCCD">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Quận/ Huyện: </label>
+                                <input type="text" class="form-control" value placeholder="Nhập quận/huyện theo CCCD">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Phường/ Xã: </label >
+                                <input type="text" class="form-control" value placeholder="Nhập xã/ phường theo CCCD">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Địa chỉ cụ thể: </label>
+                                <input type="text" class="form-control" value placeholder="Nhập số nhà/ tòa, tên đường">
+                            </div>
+                        </div>
+
+                        <hr class="border-light m-0">
+                        <div class="card-body pb-2">
+                            <h6 class="mb-4" style="font-size: 20px;"><strong>Thông tin liên lạc: </strong></h6>
+                            <div class="form-group">
+                                <label class="form-label">Số điện thoại: </label>
+                                <input type="text" class="form-control" value="0123.123.123">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" id="account-social-links">
+                        <div class="card-body pb-2">
+                            <div class="form-group">
+                                <label class="form-label">Twitter</label>
+                                <input type="text" class="form-control" value="" placeholder="Nhập liên kết đến tài khoản Twitter của bạn">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Facebook</label>
+                                <input type="text" class="form-control" value="" placeholder="Nhập liên kết đến tài khoản Facebook của bạn">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Instagram</label>
+                                <input type="text" class="form-control" value="" placeholder="Nhập liên kết đến tài khoản Instagram của bạn">
+                            </div>
+
+                            <div class="form-group">
+                                <label class="form-label">Chợ tốt: </label>
+                                <input type="text" class="form-control" value placeholder="Nhập liên kết đến tài khoản Chợ tốt của bạn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="text-right mt-3">
+        <button onclick="location.href='profile.html';" type="button" class="btn btn-primary">Lưu thay đổi</button>&nbsp;
+        <button type="button" class="btn btn-default" onclick="location.href='index.html';">Hủy</button>
+    </div>
+</div>
