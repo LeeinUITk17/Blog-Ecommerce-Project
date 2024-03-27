@@ -32,7 +32,7 @@ router.use((req,res,next)=>{
                 res.locals.user=null;
             }
             next();
-})
+});
 
 router.use('/',require('./home'));
 router.use('/home', require('./home'));

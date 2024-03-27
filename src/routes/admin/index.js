@@ -18,6 +18,15 @@ router.use((req, res, next) => {
     }
     next();
 });
+router.use((req,res,next)=>{
+    const user=req.user;
+            if(user){
+                res.locals.user=user;
+            }else{
+                res.locals.user=null;
+            }
+            next();
+});
 router.use('/login' , require('./login'));
 router.use(role);
 router.use('/' , require('./dashboard'));
