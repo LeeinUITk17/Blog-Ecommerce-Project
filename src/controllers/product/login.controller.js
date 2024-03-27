@@ -2,11 +2,7 @@ const{
     login : loginService,
     register: registerService,
 }=require('../../services/login.service');
-const {
-    verifyToken,
-}=require('../../helper/jwt.helper');
 const passport = require('passport');
-const devKey='cnttvietnhatk17';
 class UserController {
      getAll=async(req, res, next)=> {
         try {

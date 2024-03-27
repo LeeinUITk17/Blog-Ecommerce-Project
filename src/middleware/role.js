@@ -1,4 +1,5 @@
-const ensureadmin = (req, res, next) => {
+const ensureadmin =async (req, res, next) => {
+    console.log(req.user);
     if (!req.user) {
          return res.redirect('/admin/login'); 
     }
