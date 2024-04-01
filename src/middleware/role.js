@@ -1,5 +1,5 @@
 const ensureadmin =async (req, res, next) => {
-    console.log(req.user);
+    console.log('role working');
     if (!req.user) {
          return res.redirect('/admin/login'); 
     }
