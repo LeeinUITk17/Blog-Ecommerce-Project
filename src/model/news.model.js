@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 const COLLECTION_NAME = "News";
 
-const List=new Schema({
+const Listimage=new Schema({
   Image:{
     type:String,
   }
@@ -47,7 +47,7 @@ const newSchema = new Schema(
       default: Date.now,
   },
    List:{
-    type: [List],
+    type: [Listimage],
     default:[],
    }
   },

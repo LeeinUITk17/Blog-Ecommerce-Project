@@ -17,6 +17,7 @@
     "express-flash-notification": "^0.5.0",
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
+    "filepond": "^4.30.6",
     "http-errors": "~1.6.3",
     "i": "^0.3.7",
     "jsdom": "^24.0.0",

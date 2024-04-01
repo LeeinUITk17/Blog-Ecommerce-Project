@@ -195,19 +195,57 @@ document.getElementById('expirateDays').addEventListener('input', function() {
   calculateExpiryDate();
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  Dropzone.autoDiscover = false;
-  var myDropzone = new Dropzone("#my-dropzone", {
-      url: "/admin/news/dropzone/<%= item._id %>",
-      autoProcessQueue: false,
-      addRemoveLinks: true,
-      dictDefaultMessage: "Drop files here or click to upload",
-      dictRemoveFile: "Remove",
-      dictCancelUpload: "Cancel",
-      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
-  });
+var previewNode = document.querySelector("#template");
+previewNode.id = "";
+var previewTemplate = previewNode.parentNode.innerHTML;
+previewNode.parentNode.removeChild(previewNode);
 
-  document.getElementById('Uploadcancel').addEventListener("click", function() {
-      myDropzone.removeAllFiles(true);
-  });
+FilePond.registerPlugin(
+  FilePondPluginImagePreview,
+  FilePondPluginImageResize,
+  FilePondPluginFileEncode,
+);
+
+FilePond.setOptions({
+  stylePanelAspectRatio: 150 / 100,
+  imageResizeTargetWidth: 100,
+  imageResizeTargetHeight: 150
 });
+
+FilePond.parse(document.body);
+
+// Initialize Filepond
+const inputElement = document.querySelector('input[type="file"]');
+const pond = FilePond.create(inputElement, {
+  multiple: true, // Enable multiple file selection
+  allowReorder: true, // Allow reordering of files
+  maxFiles: 3, // Maximum number of files allowed
+  labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
+  server: {
+      url: '/admin/news/dropzone/<%= item._id%>',
+      process: {
+          method: 'POST',
+      },
+  },
+});
+
+// Listen for the addfile event to render selected images
+pond.on('addfile', () => {
+  renderSelectedImages();
+});
+
+// Function to render selected images
+function renderSelectedImages() {
+  const container = document.getElementById('selected-images-container');
+  container.innerHTML = ''; // Clear previous content
+
+  const files = pond.getFiles();
+  if (files.length > 0) {
+      files.forEach(file => {
+          const img = document.createElement('img');
+          img.src = URL.createObjectURL(file.file);
+          img.classList.add('selected-image');
+          container.appendChild(img);
+      });
+  }
+}

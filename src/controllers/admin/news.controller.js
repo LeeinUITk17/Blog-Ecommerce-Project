@@ -1,5 +1,4 @@
-const multer = require('multer');
-const path=require('path');
+const path = require("path");
 const {
   addItem,
   getItems,
@@ -13,6 +12,9 @@ const { body, validationResult } = require("express-validator");
 const mainName = 'news';
 const linkprefix = `/admin/${mainName}/`;
 
+const {
+  dropUpload,
+}=require('../../helper/imagearray.helper');
 
 
 
@@ -97,33 +99,71 @@ class NewsController {
     });
   };
    
-  dropzoneUpload = async (req, res, next) => {
-    const { id } = req.params;
-    if (!id) {
-        req.flash("danger", "Invalid operation", false);
-        return res.redirect(`${linkprefix}all`);
-    }
+//   dropzoneUpload = async (req, res, next) => {
+//     console.log('upload called');
+//     const { id } = req.params;
+//     if (!id) {
+//         req.flash("danger", "Invalid operation", false);
+//         return res.redirect(`${linkprefix}all`);
+//     }
+//     console.log(req.files);
+//     dropUpload(req, res, async (err) => {
+//         try {
+//             if (err) {
+//                 console.error('Error processing uploaded files:', err);
+//                 req.flash("danger", "An error occurred while processing files", false);
+//                 return res.redirect(`${linkprefix}all`);
+//             }
+//             const files = req.files;
+//             for (const file of files) {
+//                 console.log("Uploaded file:", file.filename);
+//                 const filePath = path.join(file.filename);
+//                 await updateItem(id, { List: filePath });
+//             }
 
-    if (!req.files || req.files.length === 0) {
-        req.flash("danger", "No files were uploaded", false);
-        return res.redirect(`${linkprefix}all`);
-    }
+//             req.flash("success", "Update image thành công", false);
+//             res.redirect(`${linkprefix}all`);
+//         } catch (error) {
+//             console.error('Error processing form:', error);
+//             req.flash("danger", "An error occurred", false);
+//             res.redirect(`${linkprefix}all`);
+//         }
+//     });
+// };
 
-    try {
+ dropzoneUpload = async (req, res, next) => {
+  const { id } = req.params;
+  if (!id) {
+      req.flash("danger", "Invalid operation", false);
+      return res.redirect(`${linkprefix}all`);
+  }
+
+  try {
+      // Check if files are present in the request
+      if (!req.files || req.files.length === 0) {
+          req.flash("danger", "No files were uploaded", false);
+          return res.redirect(`${linkprefix}all`);
+      }
       
-        req.files.forEach(file => {
-            console.log("Uploaded file:", file.filename);
-            
-        });
+      // Process each uploaded file
+      req.files.forEach(async (file) => {
+        console.log("Uploaded file:", file.filename);
+        const filePath = file.path;
+        const newListImage = { Image: filePath };
+        const item = await getItemById(id);
+        item.List.push(newListImage);
+        await item.save();
+    });
 
-        req.flash("success", "Files uploaded successfully", false);
-        res.redirect(`${linkprefix}all`);
-    } catch (error) {
-        console.error('Error processing uploaded files:', error);
-        req.flash("danger", "An error occurred while processing files", false);
-        res.redirect(`${linkprefix}all`);
-    }
+      req.flash("success", "Files uploaded successfully", false);
+      res.redirect(`${linkprefix}all`);
+  } catch (error) {
+      console.error('Error processing uploaded files:', error);
+      req.flash("danger", "An error occurred while processing files", false);
+      res.redirect(`${linkprefix}all`);
+  }
 };
+
 
   deleteItem = async (req, res, next) => {
     let { id } = req.params;
