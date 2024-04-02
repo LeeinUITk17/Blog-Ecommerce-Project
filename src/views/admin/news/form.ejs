@@ -6,7 +6,6 @@
        item = data
   }
 %>
-<img src="/<%= item.List[0].Image%>" alt="">
   <div class="row">
     <div class="col-md-6">
       <!-- Form 1: General Information -->
@@ -94,22 +93,37 @@
     </div>
   </div>
 
-  <form action="/admin/news/dropzone/<%= item._id%>" method="post" enctype="multipart/form-data">
-    <input type="file" 
-           class="filepond"
-           name="filepond" 
-           multiple 
-           data-allow-reorder="true"
-           data-max-file-size="3MB"
-           data-max-files="3">
-    <div class="card-footer">
-        <button type="submit" class="btn btn-primary">Upload</button>
-    </div>
+ <form id="upload-form" action="/admin/news/dropzone/<%= item._id%>" method="post" enctype="multipart/form-data">
+  <input type="file" 
+         class="filepond"
+         name="filepond" 
+         multiple 
+         data-allow-reorder="true"
+         data-max-file-size="3MB"
+         data-max-files="3">
+  <div class="card-footer">
+      <button type="submit" class="btn btn-primary">Upload</button>
+  </div>
 </form>
 
+<div class="col-12 col-sm-6">
+  <% if(item && item.List && item.List.length > 0) { %>
+    <div class="col-12 product-image-thumbs">
+      <% for(let i = 0; i < item.List.length; i++) { %>
+        <div class="product-image-thumb">
+          <img src="/<%= item.List[i].Image %>" alt="Product Image">
+         <form action="/admin/news/deleteImage/<%= item._id%>/<%=item.List[i]._id%>" method="post">
+           <button class="delete-image-btn" type="submit">Delete</button>
+         </form>
+        </div>
+      <% } %>
+    </div>
+  <% } %>
+</div>
 
-<!-- Container to display selected images -->
-<div id="selected-images-container"></div>
+
 
 </section>
 
+
+</style>

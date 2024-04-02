@@ -190,7 +190,6 @@ function calculateExpiryDate() {
   document.getElementById('calculatedExpiryDate').value = formattedExpiryDate;
 }
 
-// Event listener for input change
 document.getElementById('expirateDays').addEventListener('input', function() {
   calculateExpiryDate();
 });
@@ -201,51 +200,77 @@ var previewTemplate = previewNode.parentNode.innerHTML;
 previewNode.parentNode.removeChild(previewNode);
 
 FilePond.registerPlugin(
-  FilePondPluginImagePreview,
-  FilePondPluginImageResize,
   FilePondPluginFileEncode,
+	FilePondPluginFileValidateSize,
+	FilePondPluginImageExifOrientation,
+  FilePondPluginImagePreview
 );
 
-FilePond.setOptions({
-  stylePanelAspectRatio: 150 / 100,
-  imageResizeTargetWidth: 100,
-  imageResizeTargetHeight: 150
-});
+// Select the file input and use create() to turn it into a pond
+FilePond.create(
+	document.querySelector('input')
+);
 
-FilePond.parse(document.body);
-
-// Initialize Filepond
-const inputElement = document.querySelector('input[type="file"]');
-const pond = FilePond.create(inputElement, {
-  multiple: true, // Enable multiple file selection
-  allowReorder: true, // Allow reordering of files
-  maxFiles: 3, // Maximum number of files allowed
+const pond = FilePond.create(document.querySelector('.filepond'), {
+  allowMultiple: true, 
+  maxFiles: 3,
   labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
   server: {
       url: '/admin/news/dropzone/<%= item._id%>',
       process: {
-          method: 'POST',
-      },
+          method: 'POST'
+      }
   },
+  onaddfile: (error, file) => {
+    console.log('onaddfile called')
+    if (error) {
+        console.error('An error occurred while adding the file:', error);
+        return;
+    }
+    renderSelectedImages();
+}
 });
 
-// Listen for the addfile event to render selected images
 pond.on('addfile', () => {
   renderSelectedImages();
 });
 
-// Function to render selected images
 function renderSelectedImages() {
+  console.log('render called');
   const container = document.getElementById('selected-images-container');
-  container.innerHTML = ''; // Clear previous content
+  container.innerHTML = '';
 
   const files = pond.getFiles();
   if (files.length > 0) {
       files.forEach(file => {
           const img = document.createElement('img');
           img.src = URL.createObjectURL(file.file);
-          img.classList.add('selected-image');
+          img.classList.add('selected-images');
           container.appendChild(img);
       });
   }
 }
+
+
+const form = document.getElementById('upload-form');
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  try {
+      await pond.processFiles(); 
+  } catch (error) {
+      console.error('Error uploading files:', error);
+  }
+});
+ 
+// window.deleteImage = (imageId) => {
+//   $.ajax({
+//       url: `/admin/news/deleteImage/${imageId}`, 
+//       type: 'POST',
+//       success: function(response) {
+//           console.log('Image deleted successfully:', response);
+//       },
+//       error: function(error) {
+//           console.error('Error deleting image:', error);
+//       }
+//   });
+// }

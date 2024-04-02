@@ -2,9 +2,23 @@
     <div class="container">
       <div class="row justify-content-between">
         <div class="col-lg-7 mb-5 mb-lg-0">
-          <div class="imgs-grid">
-            <div class="grid grid-1"><img src="/<%= data.avatar%>" alt="Untree.co"></div>
-          </div>
+        </div>
+        <div class="col-lg-7 mb-5 mb-lg-0">
+                <% if(data && data.List && data.List.length > 0) { %>
+                <div class="imgs-grid">
+                        <% for(let i = 0; i < data.List.length; i++) { %>
+                        <div class="grid grid-<%= i+1 %>">
+                                <img src="/<%= data.List[i].Image%>" alt="image product">
+                        </div>
+                        <% } %>
+                </div>
+                <% } else { %>
+                <div class="imgs-grid">
+                        <div class="grid grid-1">
+                                <img src="/<%= data.avatar%>" alt="image product">
+                        </div>
+                </div>
+                <%}%>
         </div>
         <div class="col-lg-5 ps-lg-5">
           <h2 class="section-title mb-4"><%= data.name%></h2>

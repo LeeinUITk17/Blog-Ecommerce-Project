@@ -106,6 +106,67 @@ class productController {
     });
   };
   
+  dropzoneUpload = async (req, res, next) => {
+    const { id } = req.params;
+    if (!id) {
+        req.flash("danger", "Invalid operation", false);
+        return res.redirect(`${linkprefix}all`);
+    }
+    console.log(req.files);
+   
+  
+    try {
+        // Check if files are present in the request
+        if (!req.files || req.files.length === 0) {
+            req.flash("danger", "No files were uploaded", false);
+            return res.redirect(`${linkprefix}all`);
+        }
+        
+        // Process each uploaded file
+        req.files.forEach(async (file) => {
+          console.log("Uploaded file:", file.filename);
+          const filePath = path.join(file.filename);
+          console.log(filePath);
+          const newListImage = { Image: filePath };
+          const item = await getItemById(id);
+          item.List.push(newListImage);
+          await item.save();
+      });
+  
+        req.flash("success", "Files uploaded successfully", false);
+        res.redirect(`${linkprefix}all`);
+    } catch (error) {
+        console.error('Error processing uploaded files:', error);
+        req.flash("danger", "An error occurred while processing files", false);
+        res.redirect(`${linkprefix}all`);
+    }
+  };
+  
+  deleteImage = async (req, res, next) => {
+    try {
+        const { itemId, imageId } = req.params;
+        console.log(itemId, imageId);
+        const item = await getItemById(itemId);
+        if (!item) {
+            req.flash("danger", "Item not found", false);
+            return res.redirect(`${linkprefix}all`);
+        }
+        const imageIndex = item.List.findIndex(image => image._id.toString() === imageId);
+        if (imageIndex === -1) {
+            req.flash("danger", "Image not found", false);
+            return res.redirect(`${linkprefix}all`);
+        }
+        item.List.splice(imageIndex, 1);
+        await item.save();
+  
+        req.flash("success", "Image deleted successfully", false);
+        res.redirect(`${linkprefix}all`);
+    } catch (error) {
+        console.error('Error deleting image:', error);
+        req.flash("danger", "An error occurred while deleting the image", false);
+        res.redirect(`${linkprefix}all`);
+    }
+  };
 
   deleteItem = async (req, res, next) => {
     let { id } = req.params;

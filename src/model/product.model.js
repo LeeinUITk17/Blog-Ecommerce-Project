@@ -3,6 +3,13 @@ const mongoose = require("mongoose");
 
 const COLLECTION_NAME = "product";
 
+
+const Listimage=new Schema({
+  Image:{
+    type:String,
+  }
+})
+
 const newSchema = new Schema(
   {
     name: {
@@ -48,6 +55,10 @@ const newSchema = new Schema(
       type: Date,
       default: Date.now,
   },
+  List:{
+    type: [Listimage],
+    default:[],
+   },
   },
   {
     timestamps: true,

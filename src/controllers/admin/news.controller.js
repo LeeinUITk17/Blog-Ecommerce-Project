@@ -12,9 +12,7 @@ const { body, validationResult } = require("express-validator");
 const mainName = 'news';
 const linkprefix = `/admin/${mainName}/`;
 
-const {
-  dropUpload,
-}=require('../../helper/imagearray.helper');
+
 
 
 
@@ -99,44 +97,14 @@ class NewsController {
     });
   };
    
-//   dropzoneUpload = async (req, res, next) => {
-//     console.log('upload called');
-//     const { id } = req.params;
-//     if (!id) {
-//         req.flash("danger", "Invalid operation", false);
-//         return res.redirect(`${linkprefix}all`);
-//     }
-//     console.log(req.files);
-//     dropUpload(req, res, async (err) => {
-//         try {
-//             if (err) {
-//                 console.error('Error processing uploaded files:', err);
-//                 req.flash("danger", "An error occurred while processing files", false);
-//                 return res.redirect(`${linkprefix}all`);
-//             }
-//             const files = req.files;
-//             for (const file of files) {
-//                 console.log("Uploaded file:", file.filename);
-//                 const filePath = path.join(file.filename);
-//                 await updateItem(id, { List: filePath });
-//             }
-
-//             req.flash("success", "Update image thành công", false);
-//             res.redirect(`${linkprefix}all`);
-//         } catch (error) {
-//             console.error('Error processing form:', error);
-//             req.flash("danger", "An error occurred", false);
-//             res.redirect(`${linkprefix}all`);
-//         }
-//     });
-// };
-
  dropzoneUpload = async (req, res, next) => {
   const { id } = req.params;
   if (!id) {
       req.flash("danger", "Invalid operation", false);
       return res.redirect(`${linkprefix}all`);
   }
+  console.log(req.files);
+ 
 
   try {
       // Check if files are present in the request
@@ -148,7 +116,8 @@ class NewsController {
       // Process each uploaded file
       req.files.forEach(async (file) => {
         console.log("Uploaded file:", file.filename);
-        const filePath = file.path;
+        const filePath = path.join(file.filename);
+        console.log(filePath);
         const newListImage = { Image: filePath };
         const item = await getItemById(id);
         item.List.push(newListImage);
@@ -164,6 +133,31 @@ class NewsController {
   }
 };
 
+deleteImage = async (req, res, next) => {
+  try {
+      const { itemId, imageId } = req.params;
+      console.log(itemId, imageId);
+      const item = await getItemById(itemId);
+      if (!item) {
+          req.flash("danger", "Item not found", false);
+          return res.redirect(`${linkprefix}all`);
+      }
+      const imageIndex = item.List.findIndex(image => image._id.toString() === imageId);
+      if (imageIndex === -1) {
+          req.flash("danger", "Image not found", false);
+          return res.redirect(`${linkprefix}all`);
+      }
+      item.List.splice(imageIndex, 1);
+      await item.save();
+
+      req.flash("success", "Image deleted successfully", false);
+      res.redirect(`${linkprefix}all`);
+  } catch (error) {
+      console.error('Error deleting image:', error);
+      req.flash("danger", "An error occurred while deleting the image", false);
+      res.redirect(`${linkprefix}all`);
+  }
+};
 
   deleteItem = async (req, res, next) => {
     let { id } = req.params;
