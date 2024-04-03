@@ -41,6 +41,24 @@ const getStatusCounts = async () => {
   };
   return statusCounts;
 };
+const updateInformation=async (id, data) => {
+  const user = await usermodel.findById(id).exec();
+  //console.log(user);
+  if (!user) {
+      throw new Error('User not found');
+  }
+ // console.log(data);
+ // return;
+ //console.log(data.userinformation.email);
+  user.userinformation.forEach((info) => {
+      if (data.userinformation.name) info.name = data.userinformation.name;
+      if (data.userinformation.phone) info.phone = data.userinformation.phone;
+      if (data.userinformation.address) info.address = data.userinformation.address;
+      if (data.userinformation.email) info.email = data.userinformation.email;
+  });
+  await user.save();
+   console.log('update success');
+};
 
 module.exports = {
   getItems,
@@ -49,4 +67,5 @@ module.exports = {
   updateItem,
   getStatusCounts,
   addItem,
+  updateInformation,
 };

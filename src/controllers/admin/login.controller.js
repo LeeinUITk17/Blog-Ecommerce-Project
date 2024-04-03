@@ -10,7 +10,7 @@ class loginController {
 login = async (req, res, next) => {
     console.log(req.body);
     passport.authenticate('local', async (err, user) => {
-        console.log('in head');
+      //  console.log('in head');
         try {
             if (err) {
                 console.log('error 1')
@@ -23,7 +23,6 @@ login = async (req, res, next) => {
                 return res.redirect('/admin/login');
             }
             req.login(user, async (err) => {
-                console.log('error in here')
                 if (err) {
                     console.log('error 3')
                     req.flash('error', err.message);
