@@ -13,29 +13,30 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
+const {catchAsync}=require('../../../apps/utils/catchAsync');
 
 const newController = require("../../../controllers/admin/news.controller");
 const { handleValidate } = require("../../../validates/news.validate");
 
 router.use(express.json());
 
-router.get("/form", newController.getForm);
+router.get("/form", catchAsync(newController.getForm));
 router.post(
   "/form",
   handleValidate(["name", "description", "status", "ordering"]),
-  newController.addOrUpdateItem
+ catchAsync( newController.addOrUpdateItem)
 );
-router.get("/form/:id", newController.getForm);
-router.get("/delete/:id", newController.deleteItem);
-router.get('/changeStatus/:id/:status', newController.updateStatus);
+router.get("/form/:id", catchAsync(newController.getForm));
+router.get("/delete/:id", catchAsync(newController.deleteItem));
+router.get('/changeStatus/:id/:status', catchAsync(newController.updateStatus));
 
-router.get("(/:status)?", newController.getAll);  
-router.get('(/:status)?', newController.statusCount);
+router.get("(/:status)?", catchAsync(newController.getAll));  
+router.get('(/:status)?', catchAsync(newController.statusCount));
 
-router.post("/changeStatusTool", newController.statusTool);
-router.post("/upload/:id", newController.imageUpload);
+router.post("/changeStatusTool", catchAsync(newController.statusTool));
+router.post("/upload/:id", catchAsync(newController.imageUpload));
 
-router.post("/dropzone/:id", upload.array('filepond', 3), newController.dropzoneUpload);
+router.post("/dropzone/:id", upload.array('filepond', 3), catchAsync(newController.dropzoneUpload));
 
-router.post('/deleteImage/:itemId/:imageId', newController.deleteImage);
+router.post('/deleteImage/:itemId/:imageId', catchAsync(newController.deleteImage));
 module.exports = router;

@@ -16,6 +16,7 @@ const linkprefix = `/admin/${mainName}/`;
 class addressController {
 
   getAll = async (req, res, next) => {
+    //throw new Error('Not implemented');
     let { status } = req.params;
     let keyword = req.query.keywords;
 

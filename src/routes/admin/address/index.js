@@ -1,22 +1,22 @@
 const express = require("express");
 const router = express.Router();
 const addressController = require("../../../controllers/admin/address.controller");
-
+const {catchAsync}=require('../../../apps/utils/catchAsync');
 router.use(express.json());
 
-router.get("/form", addressController.getForm);
+router.get("/form", catchAsync(addressController.getForm));
 router.post(
   "/form",
  
-  addressController.addOrUpdateItem
+  catchAsync(addressController.addOrUpdateItem)
 );
-router.get("/form/:id", addressController.getForm);
-router.get("/delete/:id", addressController.deleteItem);
-router.get('/changeStatus/:id/:status', addressController.updateStatus);
+router.get("/form/:id", catchAsync(addressController.getForm));
+router.get("/delete/:id", catchAsync(addressController.deleteItem));
+router.get('/changeStatus/:id/:status', catchAsync(addressController.updateStatus));
 
-router.get("(/:status)?", addressController.getAll);  
+router.get("(/:status)?", catchAsync(addressController.getAll));  
 
-router.get('(/:status)?',addressController.statusCount);
+router.get('(/:status)?',catchAsync(addressController.statusCount));
 
-router.post("/changeStatusTool", addressController.statusTool);
+router.post("/changeStatusTool", catchAsync(addressController.statusTool));
 module.exports = router;

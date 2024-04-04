@@ -1,13 +1,14 @@
 const express=require('express');
 const router=express.Router();
 const rssController=require('../../../controllers/admin/rss.controller');
+const {catchAsync}=require('../../../apps/utils/catchAsync');
 
-router.get('',rssController.getAll);
-router.get("/form",rssController.getForm);
+router.get('',catchAsync(rssController.getAll));
+router.get("/form",catchAsync(rssController.getForm));
 router.post(
-    "/form/:id",rssController.addOrUpdateItem
+    "/form/:id",catchAsync(rssController.addOrUpdateItem)
 );
-router.get("/form/:id",rssController.getForm);
-router.get("/delete/:id",rssController.deleteItem);
+router.get("/form/:id",catchAsync(rssController.getForm));
+router.get("/delete/:id",catchAsync(rssController.deleteItem));
 
 module.exports=router;

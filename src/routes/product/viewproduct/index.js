@@ -1,5 +1,8 @@
 const express = require('express');
 const viewproductController = require('../../../controllers/product/viewproduct.controller');
 const router = express.Router();
-router.get('/:id',viewproductController.getForm);
+
+const {catchAsync}=require('../../../apps/utils/catchAsync');
+
+router.get('/:id',catchAsync(viewproductController.getForm));
 module.exports = router;

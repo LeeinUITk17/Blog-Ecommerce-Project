@@ -16,25 +16,26 @@ const upload = multer({ storage: storage });
 
 const productController = require("../../../controllers/admin/product.controller");
 const { handleValidate } = require("../../../validates/news.validate");
+const {catchAsync}=require('../../../apps/utils/catchAsync');
 router.use(express.json());
 
-router.get("/form", productController.getForm);
+router.get("/form", catchAsync(productController.getForm));
 router.post(
   "/form",
   handleValidate(["name", "description", "status", "ordering"]),
-  productController.addOrUpdateItem
+  catchAsync(productController.addOrUpdateItem)
 );
-router.get("/form/:id", productController.getForm);
-router.get("/delete/:id", productController.deleteItem);
-router.get('/changeStatus/:id/:status', productController.updateStatus);
+router.get("/form/:id", catchAsync(productController.getForm));
+router.get("/delete/:id", catchAsync(productController.deleteItem));
+router.get('/changeStatus/:id/:status', catchAsync(productController.updateStatus));
 
-router.get("(/:status)?", productController.getAll);  
+router.get("(/:status)?", catchAsync(productController.getAll));  
 
-router.get('(/:status)?',productController.statusCount);
+router.get('(/:status)?',catchAsync(productController.statusCount));
 
-router.post("/changeStatusTool", productController.statusTool);
-router.post("/upload/:id", productController.imageUpload);
-router.post("/dropzone/:id", upload.array('filepond', 3), productController.dropzoneUpload);
+router.post("/changeStatusTool", catchAsync(productController.statusTool));
+router.post("/upload/:id", catchAsync(productController.imageUpload));
+router.post("/dropzone/:id", upload.array('filepond', 3), catchAsync(productController.dropzoneUpload));
 
-router.post('/deleteImage/:itemId/:imageId', productController.deleteImage);
+router.post('/deleteImage/:itemId/:imageId', catchAsync(productController.deleteImage));
 module.exports = router;

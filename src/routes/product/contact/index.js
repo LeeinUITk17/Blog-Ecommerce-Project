@@ -1,6 +1,9 @@
 const express = require('express');
 const contactController = require('../../../controllers/product/contact.controller');
 const router = express.Router();
-router.get('/',contactController.getAll);
-router.post("/mail",contactController.sendContactMail);
+
+const {catchAsync}=require('../../../apps/utils/catchAsync');
+
+router.get('/',catchAsync(contactController.getAll));
+router.post("/mail",catchAsync(contactController.sendContactMail));
 module.exports = router;

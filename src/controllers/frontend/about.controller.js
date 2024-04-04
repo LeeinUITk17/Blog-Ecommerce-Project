@@ -2,6 +2,7 @@ const { getGoldValue } = require('../../helper/api.helper');
 
 class AboutController {
     getAll = async (req, res, next) => {
+       // throw new Error('Error in aboutController');
         try {
             const goldData = await getGoldValue(); 
             res.render('frontend/about', { goldData });

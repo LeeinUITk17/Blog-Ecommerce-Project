@@ -1,6 +1,9 @@
 const express = require('express');
 const checkoutController = require('../../../controllers/product/checkout.controller');
 const router = express.Router();
-router.get('/',checkoutController.getAll);
-router.post('/checkpoupon',checkoutController.checkpoupon);
+
+const {catchAsync}=require('../../../apps/utils/catchAsync');
+
+router.get('/',catchAsync(checkoutController.getAll));
+router.post('/checkpoupon',catchAsync(checkoutController.checkpoupon));
 module.exports = router;
