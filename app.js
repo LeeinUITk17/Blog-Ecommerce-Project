@@ -9,9 +9,10 @@ const passport=require('./src/helper/passport');
 var expressLayouts = require("express-ejs-layouts");
 const { connect } = require("./src/config/db");
 
-
 var app = express();
+
 connect();
+
 
 // view engine setup
 app.set("views", path.join(__dirname, "src/views"));
@@ -30,6 +31,9 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+
+
+
 
 app.use(passport.initialize());
 app.use(passport.session());

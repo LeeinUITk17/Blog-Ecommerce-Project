@@ -7,7 +7,7 @@
 var app = require('../app');
 var debug = require('debug')('myapp:server');
 var http = require('http');
-
+var socketIo = require('socket.io');
 /**
  * Get port from environment and store in Express.
  */
@@ -20,7 +20,8 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
-
+var io = socketIo(server);
+server?console.log('Server is running'):console.log('Server is not running');
 /**
  * Listen on provided port, on all network interfaces.
  */
@@ -29,6 +30,17 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('chat message', (msg) => {
+    io.emit('chat message', msg);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -86,3 +98,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+

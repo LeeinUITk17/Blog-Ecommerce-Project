@@ -159,6 +159,10 @@ const charging = () => {
 charging();
 document.getElementById('listaddress').addEventListener('change', charging);
 
+
+
+
+
   
 
 
