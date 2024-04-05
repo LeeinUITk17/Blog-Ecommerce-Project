@@ -1,0 +1,60 @@
+<div class="untree_co-section">
+    <div class="container">
+        <div class="block">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-8 pb-4">
+                    <form action="/shop/account/upload" method="post">
+                        <input type="hidden" name="salerID" id="salerID" value="<%= user._id%>">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="text-black" for="name">Name Product</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="enter name product....">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="enter description....">
+                        </div>
+                        <div class="form-group mb-5">
+                            <label class="text-black" for="content">Content</label>
+                            <textarea name="contect" class="form-control" id="Message" cols="30" rows="5" placeholder="enter content.... "></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="price">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" placeholder="enter price....">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="quantity">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="enter quantity....">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="ordering">Ordering</label>
+                            <input type="number" class="form-control" id="ordering" name="ordering" placeholder="enter ordering....">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="special">Special</label>
+                            <select name="special" id="special" class="form-control custom-select">
+                                <option value="true">True</option>
+                                <option value="false">False</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="text-black">Category</label>
+                            <select name="category" id="category" class="form-control custom-select">
+                              <option selected disabled>Select one</option>
+                              <% listcategoryproduct.forEach((item) => { %>
+                                <% if(!item.special) { %>
+                                  <option value="<%= item.name %>" ><%= item.name %></option>
+                                  <% } %>
+                                  <%  }); %>
+                            </select>
+                          </div>
+                        <button type="submit" class="btn btn-primary-hover-outline">Upload product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

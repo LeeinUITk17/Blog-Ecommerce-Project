@@ -27,6 +27,10 @@ const getItemById = async (id) => {
   return await productModel.findById(id).exec();
 };
 
+const getItemBySalerID=async(salerID)=>{
+  return await productModel.find({salerID:salerID});
+};
+
 const deleteItem = async (id) => {
   return await productModel.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
 };
@@ -53,4 +57,5 @@ module.exports = {
   getItemById,
   updateItem,
   getStatusCounts,
+  getItemBySalerID,
 };

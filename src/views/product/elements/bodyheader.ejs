@@ -18,13 +18,31 @@
 
             <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
                 <% if(user) { %>
-                    <li><a class="nav-link" href="/shop/account"><img src="/<%= user.avatar%>" class="user-avatar"></a></li>
-                    <li><a class="nav-link" href="/shop/login/out"><img src="/product/images/shutdown.png" class="user-avatar"></a></li>
+                    <li class="nav-link nav-item dropdown">
+                        <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" role="button" aria-expanded="false"><img src="/product/images/user.svg"></a>
+                        <ul class="dropdown-menu">               
+                            <li>
+                                <a href="/shop/account" class="dropdown-item"><img src="/<%= user.avatar%>" class="user-avatar">Your profile</a>
+                            </li>
+                            <li>
+                                <a href="/shop/cart" class="dropdown-item"><img src="/product/images/cart.png" class="user-avatar">Your cart</a>
+                            </li> 
+                            <li>
+                                <a href="/shop/account/upload" class="dropdown-item"><img src="/product/images/upload.png" class="user-avatar">Upload product</a>
+                            </li>
+                            <li>
+                                <a href="/shop/account/manager" class="dropdown-item"><img src="/product/images/manager.png" class="user-avatar">Manager product</a>
+                            </li>
+                            <li>
+                                <a href="/shop/login/out" class="dropdown-item"><img src="/product/images/shutdown.png" class="user-avatar">Log out</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- <li><a class="nav-link" href="/shop/login/out"><img src="/product/images/shutdown.png" class="user-avatar"></a></li> -->
                 <% } else { %>
                     <li><a class="nav-link" href="/shop/login"><img src="/product/images/user.svg"></a></li>
-                    <% }%>
-                            <li><a class="nav-link" href="/shop/cart"><img src="/product/images/cart.svg"></a></li>
-               
+                    <li><a class="nav-link" href="/shop/cart"><img src="/product/images/cart.svg"></a></li> 
+                    <% }%>  
             </ul>
         </div>
     </div>

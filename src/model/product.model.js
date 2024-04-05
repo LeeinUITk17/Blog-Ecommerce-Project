@@ -21,6 +21,10 @@ const newSchema = new Schema(
       default: "inactive",
       enum: ["active", "inactive"],
     },
+    salerID:{
+       type: String,
+       default: "admin",
+    },
     description: String,
     ordering: {
       type: Number,

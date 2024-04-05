@@ -2,6 +2,10 @@ const {
     updateInformation,
     getItemById,
 }=require('../../services/user.service');
+const {
+    addItem,
+    getItemBySalerID,
+}=require('../../services/product.admin.service')
 class accountController {
     getAll = async (req, res, next) => {
        // const user=req.user;
@@ -19,6 +23,20 @@ class accountController {
             console.log('update fail'+ error);
             res.redirect('/shop/account');
         }
+    }
+    saleUploadForm=async(req,res,next)=>{
+       return res.render('product/saleUpload');
+    }
+    saleUpload=async(req,res,next)=>{
+        console.log(req.body);
+        //console.log(req.files);
+        await addItem(req.body);
+        return res.redirect('/shop/account/manager');
+    }
+    saleManage=async(req,res,next)=>{
+        const data=await getItemBySalerID(req.user._id);
+        console.log(data);  
+       return res.render('product/saleManage',{data});
     }
 }
 
