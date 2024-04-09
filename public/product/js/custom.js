@@ -127,7 +127,26 @@ $(document).ready(function() {
     });
 });
 
-const charging = () => {
+
+
+
+const previewImage = (input) => {
+    console.log('Preview image function called');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            document.getElementById('avatarPreview').src = e.target.result;
+        }
+        
+        reader.readAsDataURL(input.files[0]); 
+    }
+  };
+
+
+
+
+  const charging = () => {
     var selectElement = document.getElementById('listaddress');
     var selectedOption = selectElement.options[selectElement.selectedIndex];
     document.getElementById('shipping_fee').innerText = selectedOption.value;
@@ -155,14 +174,8 @@ const charging = () => {
     document.getElementById('hiddentotal').value = total;
 };
 
-
 charging();
 document.getElementById('listaddress').addEventListener('change', charging);
-
-
-
-
-
   
 
 

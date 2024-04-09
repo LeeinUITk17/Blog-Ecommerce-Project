@@ -17,12 +17,21 @@
                 </div>
             </div>
             <div class="col-md-9">
-               <form action="/shop/account" method="post">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+                <form action="/shop/account/avatarUpload" method="post" enctype="multipart/form-data">
+                    <div class="card-body media align-items-center">
+                        <input type="file" class="form-control" name="avatar" onchange="previewImage(this)">
+                         <img id="avatarPreview" src="/<%= auth.avatar  %>" alt="Avatar Preview" style="max-width: 500px; margin-top: 10px;">
+                                 </div>
+                                 <button type="submit">Save Image</button>
+                   </form>
+                </div>
+            </div>
+               <form action="/shop/account" method="post" >
                     <div class="tab-content">
                         <div class="tab-pane fade active show" id="account-general">
-                            <div class="card-body media align-items-center">
-                                <img src="/<%= auth.avatar%>" alt class="d-block ui-w-80" width="40%" height="auto">
-                            </div>
+                          
                             <hr class="border-light m-0">
                             <div class="card-body">
                                 <div class="form-group">
@@ -101,3 +110,16 @@
     </div>
 </form>
 </div>
+<!-- <script>
+    function previewImage(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+                document.getElementById('avatarPreview').src = e.target.result;
+            }
+            
+            reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+    </script> -->

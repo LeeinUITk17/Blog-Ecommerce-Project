@@ -47,7 +47,7 @@ const {
         req.flash("danger", "Invalid operation", false);
         return res.redirect(`${linkprefix}all`);
       }
-    
+      
       imageHelper(req, res, async (err) => {
         try {
           const filePath = path.join(req.file.filename);

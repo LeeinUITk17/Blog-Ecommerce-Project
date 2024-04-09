@@ -94,12 +94,12 @@ data.list.forEach((item) => {
 
     </tr>
     <tr>
-    <th>Tax</th>
-    <td>$0</td>
+    <th>Coupon charging:</th>
+    <td>- $<%= subtotal+address.charging-data.total%></td>
     </tr>
     <tr>
-    <th>Shipping:</th>
-    <td>$<%= address.charging%></td>
+    <th>Shipping: </th>
+    <td>+ $<%= address.charging%></td>
     </tr>
     <tr>
     <th>Total:</th>

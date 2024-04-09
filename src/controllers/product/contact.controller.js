@@ -1,5 +1,7 @@
 const nodemailer = require("nodemailer");
-const mailReplyContent = require('../../helper/mailreply');
+const {
+    mailreply,
+} = require('../../helper/mailreply');
 const {
   addItem,
   getItems,
@@ -26,7 +28,7 @@ class contactController {
             const { Name, Email, Message,place } = req.body;
           await addItem(req.body);
             // Invoke the mailReplyContent function to get the actual content
-            const replyContent = mailReplyContent();
+            const replyContent = mailreply();
             
             const mailOptions = {
                 from: 'mrtaivietbac@gmail.com',

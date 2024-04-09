@@ -1,0 +1,71 @@
+<div class="untree_co-section">
+    <div class="container">
+        <div class="block">
+            <div class="row justify-content-center">
+                <div class="tab-content">
+                    <div class="tab-pane fade active show" id="account-general">
+                <form action="/shop/account/avatarProduct/<%= data._id%>" method="post" enctype="multipart/form-data">
+                    <div class="card-body media align-items-center">
+                        <input type="file" class="form-control" name="avatar" onchange="previewImage(this)">
+                         <img id="avatarPreview" src="/<%= data.avatar  %>" alt="Avatar Preview" style="max-width: 30%; margin-top: 10px;">
+                                 </div>
+                                 <button type="submit" class="btn btn-primary-hover-outline">Save Image</button>
+                   </form>
+                </div>
+            </div>
+                <div class="col-md-8 col-lg-8 pb-4">
+                    <form action="/shop/account/upload" method="post">
+                        <input type="hidden" name="salerID" id="salerID" value="<%= user._id%>">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label class="text-black" for="name">Name Product</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="enter name product...." value="<%= data.name%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="description">Description</label>
+                            <input type="text" class="form-control" id="description" name="description" placeholder="enter description...."value="<%=data.description%>">
+                        </div>
+                        <div class="form-group mb-5">
+                            <label class="text-black" for="content">Content</label>
+                            <textarea name="content" class="form-control" id="editor" cols="30" rows="5" placeholder="enter content.... "><%=data.content%></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="price">Price</label>
+                            <input type="number" class="form-control" id="price" name="price" placeholder="enter price...."value="<%=data.price%>">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="quantity">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" placeholder="enter quantity...."value="<%=data.quantity%>">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="ordering">Ordering</label>
+                            <input type="number" class="form-control" id="ordering" name="ordering" placeholder="enter ordering...."value="<%=data.ordering%>">
+                        </div>
+                        <div class="form-group">
+                            <label class="text-black" for="special">Special</label>
+                            <select name="special" id="special" class="form-control custom-select">
+                                <option value="true" <%= (data.special === true) ? 'selected="selected"' : '' %>>True</option>
+                                <option value="false" <%= (data.special === false) ? 'selected="selected"' : '' %>>False</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category" class="text-black">Category</label>
+                            <select name="category" id="category" class="form-control custom-select">
+                              <option selected disabled>Select one</option>
+                              <% listcategoryproduct.forEach((item) => { %>
+                                <% if(!item.special) { %>
+                                  <option value="<%= item.name %>" ><%= item.name %></option>
+                                  <% } %>
+                                  <%  }); %>
+                            </select>
+                          </div>
+                        <button type="submit" class="btn btn-primary-hover-outline">Upload product</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
