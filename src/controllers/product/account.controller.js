@@ -42,9 +42,22 @@ class accountController {
         }
     }
     saleUpload=async(req,res,next)=>{
-        console.log(req.body);
-        //console.log(req.files);
-        await addItem(req.body);
+        // console.log(req.body);
+        // //console.log(req.files);
+        // return;
+        const id=req.user._id;
+        imageHelper(req,res,async(err)=>{
+          try {
+            const filePath = path.join(req.file.filename);
+            req.body.file = filePath;
+            const product= await addItem(req.body);
+            console.log(product._id);
+            await productUpdate(product._id, { avatar: filePath });
+            console.log(`Updated image for user with id ${id}`);
+          } catch (error) {
+            console.error('Error processing form:', error);
+          }
+        })
          res.redirect('/shop/account/manager');
     }
     saleManage=async(req,res,next)=>{

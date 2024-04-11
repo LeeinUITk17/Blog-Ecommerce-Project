@@ -5,7 +5,8 @@ const path=require('path');
 const mainName='product';
 const linkprefix=`/admin/${mainName}/`;
 const addItem = async (body) => {
-  await productModel.create(body);
+  const product=await productModel.create(body);
+  return product._id;
 };
 const getItems = async (status, keyword) => {
   let query = {};
@@ -30,7 +31,6 @@ const getItemById = async (id) => {
 const getItemBySalerID=async(salerID)=>{
   return await productModel.find({salerID:salerID});
 };
-
 const deleteItem = async (id) => {
   return await productModel.deleteOne({ _id: new mongoose.Types.ObjectId(id) });
 };

@@ -18,8 +18,8 @@
               </thead>
 
               <tbody>
+                <% data.forEach((item, index) => { %>
                 <tr>
-                    <% data.forEach((item, index) => { %>
                         <td><%= index + 1 %></td>
                         <td><%= item.category %></td>
                         <td><%= item.name %></td>
@@ -29,8 +29,8 @@
                         <td><%= item.createdAt.toISOString().split('T')[0] %></td>
                         <td><%= item.status %></td>
                         <td><a href="/shop/account/upload/<%= item._id%>"><button link type="button" class="btn btn-secondary me-2" >View Details</button></a></td>
-                    <% }); %>
                 </tr>
+                <% }); %>
               </tbody>
             </table>
           </div>
