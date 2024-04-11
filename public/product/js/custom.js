@@ -143,7 +143,27 @@ const previewImage = (input) => {
     }
   };
 
+  document.addEventListener("DOMContentLoaded", function() {
+    const images = document.querySelectorAll(".imgs-grid img");
+    let previousGridElement = null; 
 
+    images.forEach(function(image) {
+        image.addEventListener("click", function() {
+            const parent = image.parentElement;
+            const currentGridClass = parent.classList[1]; 
+            const currentGridNumber = parseInt(currentGridClass.replace('grid-', '')); 
+
+            if (previousGridElement) {
+                const previousGridClass = previousGridElement.classList[1]; 
+                const previousGridNumber = parseInt(previousGridClass.replace('grid-', '')); 
+
+                previousGridElement.classList.replace(previousGridClass, 'grid-' + currentGridNumber);
+                parent.classList.replace(currentGridClass, 'grid-' + previousGridNumber);
+            }
+            previousGridElement = parent;
+        });
+    });
+});
 
 
   const charging = () => {
