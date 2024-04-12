@@ -8,6 +8,7 @@ const {
     getItemBySalerID,
     getItemById: productID,
     updateItem: productUpdate,
+    deleteItem: productDelete,
 }=require('../../services/product.admin.service')
 const {
     imageHelper,
@@ -94,7 +95,12 @@ class accountController {
             res.redirect(`/shop/account/manager`);
           }
         });
-      }
+      };
+      deleteproduct=async(req,res,next)=>{
+        const {id}=req.params;
+        await productDelete(id);
+        res.redirect('/shop/account/manager');
+      };
 }
 
 module.exports = new accountController();
