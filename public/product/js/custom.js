@@ -1,3 +1,16 @@
+const previewImage = (input) => {
+    console.log('Preview image function called');
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function(e) {
+            document.getElementById('avatarPreview').src = e.target.result;
+        }
+        
+        reader.readAsDataURL(input.files[0]); 
+    }
+  };
+
 const handleDelete = (link) => {
     Swal.fire({
       title: "Are you sure?",
@@ -14,6 +27,46 @@ const handleDelete = (link) => {
     });
   };
 
+
+  
+//   FilePond.create(
+//       document.querySelector('input')
+//   );
+  
+//   const pond = FilePond.create(document.querySelector('.filepond'), {
+//     allowMultiple: true, 
+//     maxFiles: 3,
+//     labelIdle: 'Drag & Drop your files or <span class="filepond--label-action">Browse</span>',
+//     server: {
+//         url: '/shop/account/PostListImg/<%= item._id%>',
+//         process: {
+//             method: 'POST'
+//         }
+//     },
+//     onaddfile: (error, file) => {
+//       console.log('onaddfile called')
+//       if (error) {
+//           console.error('An error occurred while adding the file:', error);
+//           return;
+//       }
+      
+//   }
+//   });
+//   FilePond.registerPlugin(
+//     FilePondPluginFileEncode,
+//     FilePondPluginFileValidateSize,
+//       FilePondPluginImageExifOrientation,
+//     FilePondPluginImagePreview
+//   );
+//   const form = document.getElementById('upload-form');
+//   form.addEventListener('submit', async (event) => {
+//     event.preventDefault();
+//     try {
+//         await pond.processFiles(); 
+//     } catch (error) {
+//         console.error('Error uploading files:', error);
+//     }
+//   });
 
 (function() {
 	'use strict';
@@ -149,18 +202,7 @@ $(document).ready(function() {
 
 
 
-const previewImage = (input) => {
-    console.log('Preview image function called');
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        
-        reader.onload = function(e) {
-            document.getElementById('avatarPreview').src = e.target.result;
-        }
-        
-        reader.readAsDataURL(input.files[0]); 
-    }
-  };
+
 
   document.addEventListener("DOMContentLoaded", function() {
     const images = document.querySelectorAll(".imgs-grid img");

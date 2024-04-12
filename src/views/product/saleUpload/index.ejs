@@ -3,13 +3,13 @@
         <div class="block">
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-8 pb-4">
-                    <form action="/shop/account/upload" method="post" enctype="multipart/form-data">
+                    <form action="/shop/account/upload" method="post" enctype="multipart/form-data" >
                         <input type="hidden" name="salerID" id="salerID" value="<%= user._id%>">
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label class="text-black" for="name">Name Product</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="enter name product...." >
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="enter name product....">
                                 </div>
                             </div>
                         </div>
@@ -19,7 +19,7 @@
                         </div>
                         <div class="form-group mb-5">
                             <label class="text-black" for="content">Content</label>
-                            <textarea name="content" class="form-control" id="editor" cols="30" rows="5" placeholder="enter content.... "></textarea>
+                            <textarea name="content" class="form-control" id="editor" cols="30" rows="5" placeholder="enter content...."></textarea>
                         </div>
                         <div class="form-group">
                             <label class="text-black" for="price">Price</label>
@@ -36,28 +36,37 @@
                         <div class="form-group">
                             <label class="text-black" for="special">Special</label>
                             <select name="special" id="special" class="form-control custom-select">
-                                <option value="true"  >True</option>
-                                <option value="false" >False</option>
+                                <option value="true">True</option>
+                                <option value="false">False</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="category" class="text-black">Category</label>
                             <select name="category" id="category" class="form-control custom-select">
-                              <option selected disabled>Select one</option>
-                              <% listcategoryproduct.forEach((item) => { %>
-                                <% if(!item.special) { %>
-                                  <option value="<%= item.name %>" ><%= item.name %></option>
-                                  <% } %>
-                                  <%  }); %>
+                                <option selected disabled>Select one</option>
+                                <% listcategoryproduct.forEach((item) => { %>
+                                    <% if(!item.special) { %>
+                                        <option value="<%= item.name %>"><%= item.name %></option>
+                                    <% } %>
+                                <% }); %>
                             </select>
-                          </div>
-                          <div class="card-body media align-items-center">
+                        </div>
+                        <div class="card-body media align-items-center">
                             <input type="file" class="form-control" name="avatar" onchange="previewImage(this)">
-                             <img id="avatarPreview"  alt="Avatar Preview" style="max-width: 500px; margin-top: 10px;">              
-                            </div>
+                            <img id="avatarPreview" alt="Avatar Preview" style="max-width: 500px; margin-top: 10px;">
+                        </div>
+                        
                         <button type="submit" class="btn btn-primary-hover-outline">Upload product</button>
                         <a href="/shop/account/manager"><button link type="button" class="btn btn-primary-hover-outline">Back</button></a>
-                    </form>
+                    <!-- </form>
+                    <form action="/shop/account/upload" method="post" enctype="multipart/form-data" id="upload-form">
+                        <div class="card-body media align-items-center">
+                            <input type="file" class="filepond" name="filepond" multiple data-allow-reorder="true" data-max-file-size="3MB" data-max-files="3">
+                        </div>
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Upload</button>
+                        </div>
+                    </form> -->
                 </div>
             </div>
         </div>

@@ -101,6 +101,33 @@ class accountController {
         await productDelete(id);
         res.redirect('/shop/account/manager');
       };
+
+      filepond = async (req, res, next) => {
+        const { id } = req.params;
+        if (!id) {
+            return res.redirect(`/shop/account/manager`);
+        }
+        console.log(req.files);
+        try {
+            if (!req.files || req.files.length === 0) {
+                req.flash("danger", "No files were uploaded", false);
+                return res.redirect(`/shop/account/manager`);
+            }
+            req.files.forEach(async (file) => {
+              console.log("Uploaded file:", file.filename);
+              const filePath = path.join(file.filename);
+              console.log(filePath);
+              const newListImage = { Image: filePath };
+              const item = await productID(id);
+              item.List.push(newListImage);
+              await item.save();
+          });
+            res.redirect(`/shop/account/manager`);
+        } catch (error) {
+            console.error('Error processing uploaded files:', error);
+            res.redirect(`/shop/account/manager`);
+        }
+      };
 }
 
 module.exports = new accountController();

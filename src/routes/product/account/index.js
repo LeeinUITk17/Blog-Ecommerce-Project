@@ -13,4 +13,5 @@ router.get('/manager', catchAsync(accountController.saleManage));
 router.post('/avatarUpload',catchAsync(accountController.imageUpload));
 router.post('/avatarProduct/:id',catchAsync(accountController.productUpload));
 router.get('/delete/:id',catchAsync(accountController.deleteproduct));
+router.post('/PostListImg/:id',catchAsync(accountController.filepond));
 module.exports = router;
