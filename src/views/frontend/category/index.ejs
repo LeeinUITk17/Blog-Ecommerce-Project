@@ -1,4 +1,13 @@
-<button type="button" class="btn btn-block btn-outline-dark"> <%= slug %></button>
+<div class="row">
+        
+    <nav class="pagination">
+        <a href="/home" class="page-numbers">ALL</a>
+        <a href="/category/pirates" class="page-numbers <%= slug === 'pirates' ? 'current' : '' %>">Pirates</a>
+        <a href="/category/member" class="page-numbers <%= slug === 'member' ? 'current' : '' %>">Member</a>
+        <a href="/category/marines" class="page-numbers <%= slug === 'marines' ? 'current' : '' %>">Marines</a>
+    </nav>
+
+</div>
 <section id="bricks">
     
     <div class="row masonry">
@@ -44,22 +53,6 @@
 
     </div> <!-- end row -->
 
-    <div class="row">
-        
-        <nav class="pagination">
-           <span class="page-numbers prev inactive">Prev</span>
-            <span class="page-numbers current">1</span>
-            <a href="#" class="page-numbers">2</a>
-           <a href="#" class="page-numbers">3</a>
-           <a href="#" class="page-numbers">4</a>
-           <a href="#" class="page-numbers">5</a>
-           <a href="#" class="page-numbers">6</a>
-           <a href="#" class="page-numbers">7</a>
-           <a href="#" class="page-numbers">8</a>
-           <a href="#" class="page-numbers">9</a>
-            <a href="#" class="page-numbers next">Next</a>
-       </nav>
-
-    </div>
+ 
 
 </section> <!-- end bricks -->

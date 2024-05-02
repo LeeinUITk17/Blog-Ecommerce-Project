@@ -5,9 +5,7 @@
     <div class="row header-content">
 
         <div class="logo">
-          <a href="/<%= listcategory[0].slug %>">Home
-            <img src="/<%=datasetting[0].avatar %>" alt="Logo">
-        </a>
+          <a href="/<%= listcategory[0].slug %>"><img src="/<%=datasetting[0].avatar %>" alt="Logo"> </a>
        </div>
 
         <nav id="main-nav-wrap">
@@ -32,8 +30,21 @@
                         </ul>
                     </li>
                 <% } %>
-                
-
+               <% if(user) {%>
+                <li class="nav-item dropdown">
+                    <a class="nav-link me-4 dropdown-toggle link-dark" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false"><img src="/frontend/images/account.png" alt="account"></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/account/" class="dropdown-item"><img src="/frontend/images/account.png" alt="account">-> Account Information</a></li>
+                        <li><a href="/account/upload" class="dropdown-item"><img src="/frontend/images/upload.png" alt="upload">-> Upload new page </a></li>
+                        <li><a href="/account/manage" class="dropdown-item"><img src="/frontend/images/blog.png" alt="blog">-> Page management </a></li>
+                        <li><a href="/login/out" class="dropdown-item"><img src="/frontend/images/log-out.png" alt="blog">-> Log out </a></li>
+                    </ul>
+                </li>
+                <% } else {%>
+                    <li class="nav-item dropdown">
+                       <a href="/login"> <img src="/frontend/images/login.png" alt="log-in"></a>
+                    </li>
+                    <%}%>
                
             </ul>
          </nav> <!-- end main-nav-wrap -->

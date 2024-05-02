@@ -1,16 +1,4 @@
 
-  <!-- view -->
-<% if (goldData && Array.isArray(goldData)) { %>
-    <% goldData.forEach((item) => { %>
-        <ul>
-            <% Object.keys(item).forEach((key) => { %>
-                <li><%= key %>: <%= item[key] %></li>
-            <% }); %>
-        </ul>
-    <% }); %>
-<% } else { %>
-    <p>No gold data available.</p>
-<% } %>
 
 
 <section id="content-wrap" class="site-page">

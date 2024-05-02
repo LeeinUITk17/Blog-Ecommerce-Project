@@ -1,3 +1,13 @@
+<div class="row">
+        
+    <nav class="pagination">
+        <a href="/home" class="page-numbers current">ALL</a>
+        <a href="/category/pirates" class="page-numbers">Pirates</a>
+        <a href="/category/member" class="page-numbers">Member</a>
+       <a href="/category/marines" class="page-numbers">Marines</a>
+   </nav>
+
+</div>
 <section id="bricks">
 
     <div class="row masonry">
@@ -32,67 +42,7 @@
                                 <% }  %>
                                  
                             <% }); %>
-                            
-
-
-
-                            <!-- <li>
-                                <div class="featured-post-slide">
-
-                                    <div class="post-background" style="background-image:url('/frontend/images/thumbs/featured/1.jpg');"></div>
-
-                                    <div class="overlay"></div>			   		
-
-                                    <div class="post-content">
-                                        <ul class="entry-meta">
-                                             <li>September 06, 2024</li> 
-                                             <li><a href="#" >L.ThTai</a></li>				
-                                         </ul>	
-
-                                        <h1 class="slide-title"><a href="/home" title="">The Straw Hat Pirates</a></h1> 
-                                    </div> 				   					  
-                            
-                                </div>
-                            </li> /slide -->
-
-                            <!-- <li>
-                                <div class="featured-post-slide">
-
-                                    <div class="post-background" style="background-image:url('/frontend/images/thumbs/featured/2.jpg');"></div>
-
-                                    <div class="overlay"></div>			   		
-
-                                    <div class="post-content">
-                                        <ul class="entry-meta">
-                                             <li>August 29, 2024</li>
-                                             <li><a href="#">L.ThTai</a></li>					
-                                         </ul>	
-
-                                        <h1 class="slide-title"><a href="/home" title="">The Straw Hat Pirates</a></h1>
-                                    </div>		   				   					  
-                            
-                                </div>
-                            </li> 
-
-                            <li>
-                                <div class="featured-post-slide">
-
-                                    <div class="post-background" style="background-image:url('/frontend/images/thumbs/featured/3.jpg');;"></div>
-
-                                    <div class="overlay"></div>			   		
-
-                                    <div class="post-content">
-                                        <ul class="entry-meta">
-                                             <li>August 27, 2024</li>
-                                             <li><a href="#" class="author">L.ThTai</a></li>					
-                                         </ul>	
-
-                                        <h1 class="slide-title"><a href="/home" title="">The Straw Hat Pirates</a></h1>
-                                    </div>
-
-                                </div>
-                            </li> end slide -->
-
+                        
                         </ul> <!-- end slides -->
                     </div> <!-- end featured-post-slider -->        			
               </div> <!-- end entry content -->         		
@@ -107,7 +57,7 @@
             return array;
           }
         
-          const shuffledNews = shuffleArray(listnews);
+          const shuffledNews = shuffleArray(listnews.slice(0, 10));
           const nonrenderedCategories = new Set();
           shuffledNews.forEach((item) => {
            %>
@@ -151,22 +101,6 @@
 
     </div> <!-- end row -->
 
-    <div class="row">
-        
-        <nav class="pagination">
-           <span class="page-numbers prev inactive">Prev</span>
-            <span class="page-numbers current">1</span>
-            <a href="#" class="page-numbers">2</a>
-           <a href="#" class="page-numbers">3</a>
-           <a href="#" class="page-numbers">4</a>
-           <a href="#" class="page-numbers">5</a>
-           <a href="#" class="page-numbers">6</a>
-           <a href="#" class="page-numbers">7</a>
-           <a href="#" class="page-numbers">8</a>
-           <a href="#" class="page-numbers">9</a>
-            <a href="#" class="page-numbers next">Next</a>
-       </nav>
-
-    </div>
+    
 
 </section> <!-- end bricks -->

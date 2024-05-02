@@ -42,7 +42,7 @@
     "sessionstorage": "^0.1.0",
     "slugify": "^1.6.6",
     "socket.io": "^4.7.5",
-    "sweetalert2": "^11.10.7",
+    "sweetalert2": "^11.10.8",
     "uuid": "^9.0.1"
   }
 }
