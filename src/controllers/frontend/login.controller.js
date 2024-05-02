@@ -23,13 +23,16 @@ class logincontroller {
     try {
         console.table(req.body);
        const user= await registerService(req.body);
-       req.login(user, (err) => {
-        if (err) {
-            req.flash('error', err.message);
-            return res.render('blogLogin/login',{layout:'blogLogin'});
-        }
-        return res.redirect('/home'); 
-    });
+      if(!user){
+       // req.flash('error', err.message);
+       console.log('error');
+        return res.render('blogLogin/register',{layout:'blogLogin'});
+      }
+      else{
+        console.log('success');
+        return res.render('blogLogin/login',{layout:'blogLogin'});
+      }
+      
     } catch (err) {
         req.flash('error', err.message);
         return res.render('blogLogin/register',{layout:'blogLogin'});
