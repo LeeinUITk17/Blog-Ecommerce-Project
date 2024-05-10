@@ -15,92 +15,85 @@
         <!-- brick-wrapper -->
       <div class="bricks-wrapper">
 
-          <div class="grid-sizer"></div>
-
-          <div class="brick entry featured-grid animate-this">
-              <div class="entry-content">
-                  <div id="featured-post-slider" class="flexslider">
-                        <ul class="slides">
+          <div class="grid-sizer">
 
 
-
-                            <% listnews.forEach((item) => { %>
-                                <% if (item.special) { %>
-                                    <li>
-                                        <div class="featured-post-slide">
-                                            <div class="post-background" style="background-image:url('/<%= item.avatar %>');"></div>
-                                            <div class="overlay"></div>
-                                            <div class="post-content">
-                                                <ul class="entry-meta">
-                                                    <li>September 06, 2024</li>
-                                                    <li><a href="#">L.ThTai</a></li>
-                                                </ul>
-                                                <h1 class="slide-title"><a href="/news/<%= item._id%>" title=""><%= item.name %></a></h1>
-                                            </div>
-                                        </div>
-                                    </li> <!-- /slide -->
-                                <% }  %>
-                                 
-                            <% }); %>
-                        
-                        </ul> <!-- end slides -->
-                    </div> <!-- end featured-post-slider -->        			
-              </div> <!-- end entry content -->         		
-          </div>
-
-          <%
-          function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-              const j = Math.floor(Math.random() * (i + 1));
-              [array[i], array[j]] = [array[j], array[i]];
+            <div class="brick entry featured-grid animate-this">
+                <div class="entry-content">
+                    <div id="featured-post-slider" class="flexslider">
+                          <ul class="slides">
+  
+  
+  
+                              <% listnews.forEach((item) => { %>
+                                  <% if (item.special) { %>
+                                      <li>
+                                          <div class="featured-post-slide">
+                                              <div class="post-background" style="background-image:url('/<%= item.avatar %>');"></div>
+                                              <div class="overlay"></div>
+                                              <div class="post-content">
+                                                  <ul class="entry-meta">
+                                                      <li>September 06, 2024</li>
+                                                      <li><a href="#">L.ThTai</a></li>
+                                                  </ul>
+                                                  <h1 class="slide-title"><a href="/news/<%= item._id%>" title=""><%= item.name %></a></h1>
+                                              </div>
+                                          </div>
+                                      </li> <!-- /slide -->
+                                  <% }  %>
+                                   
+                              <% }); %>
+                          
+                          </ul> <!-- end slides -->
+                      </div> <!-- end featured-post-slider -->        			
+                </div> <!-- end entry content -->         		
+            </div>
+  
+            <%
+            function shuffleArray(array) {
+              for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+              }
+              return array;
             }
-            return array;
-          }
-        
-          const shuffledNews = shuffleArray(listnews.slice(0, 10));
-          const nonrenderedCategories = new Set();
-          shuffledNews.forEach((item) => {
-           %>
-        
-          <% if (!item.special) { %>
-                    
-                                <article class="brick entry format-standard animate-this">
-                    
-                        <div class="entry-thumb">
-                           <a href="/news/<%= item._id%>" class="thumb-link">
-                               <img src="/<%= item.avatar%>" alt="building">             
-                           </a>
-                        </div>
-                    
-                        <div class="entry-text">
-                            <div class="entry-header">
-                    
-                                <div class="entry-meta">
-                                    <span class="cat-links">
-                                        <a href="#"><%= item.name%></a>               				
-                                    </span>			
-                                </div>
-                    
-                                <h1 class="entry-title"><a href="/news/<%= item._id%>"><%= item.description%></a></h1>
-                                
-                            </div>
-                        </div>
-                    
-                    
-                         </article> 
-                    <% }  %>
-        <%
-              });
-        %>
-        
-        
-         <!-- format audio here -->
-        
+          
+            const shuffledNews = shuffleArray(listnews.slice(0, 10));
+            const nonrenderedCategories = new Set();
+            shuffledNews.forEach((item) => {
+             %>
+          
+            <% if (!item.special) { %>
+                      
+                                  <article class="brick entry format-standard animate-this">
+                      
+                          <div class="entry-thumb">
+                             <a href="/news/<%= item._id%>" class="thumb-link">
+                                 <img src="/<%= item.avatar%>" alt="building">             
+                             </a>
+                          </div>
+                      
+                          <div class="entry-text">
+                              <div class="entry-header">
+                      
+                                  <div class="entry-meta">
+                                      <span class="cat-links">
+                                          <a href="#"><%= item.name%></a>               				
+                                      </span>			
+                                  </div>
+                      
+                                  <h1 class="entry-title"><a href="/news/<%= item._id%>"><%= item.description%></a></h1>
+                                  
+                              </div>
+                          </div>
+                      
+                      
+                           </article> 
+                      <% }  %>
+          <%  }) ; %>
+          </div>       
 
-      </div> <!-- end brick-wrapper --> 
+    </div> 
+    </div>
 
-    </div> <!-- end row -->
-
-    
-
-</section> <!-- end bricks -->
+</section>
